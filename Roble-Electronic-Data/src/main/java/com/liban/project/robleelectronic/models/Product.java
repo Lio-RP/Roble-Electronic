@@ -1,16 +1,33 @@
 package com.liban.project.robleelectronic.models;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "product")
 public class Product extends BaseEntity {
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
+    @Lob
     private String description;
+
+    @Column(name = "vendor")
     private String vendor;
+
+    @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "image")
+    @Lob
     private Byte[] image;
 
-    //ManyToOne
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public String getName() {

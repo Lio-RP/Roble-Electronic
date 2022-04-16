@@ -2,21 +2,41 @@ package com.liban.project.robleelectronic.models;
 
 import com.liban.project.robleelectronic.enums.OrderStatus;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "order")
 public class Order extends BaseEntity {
 
+    @Column(name = "order_number")
     private int orderNumber;
+    
+    @Column(name = "date_ordered")
     private LocalDate dateOrdered;
 
     //ManyToMany
+    @ManyToMany
+    @JoinTable(name = "order_products", joinColumns = @JoinColumn(name = "order_id"),
+                        inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new HashSet<>();
+    
+    @Column(name = "product_quantity")
     private int productQuantity;
+    
+    @Column(name = "price")
     private BigDecimal price;
+    
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     public int getOrderNumber() {
         return orderNumber;
@@ -64,5 +84,13 @@ public class Order extends BaseEntity {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

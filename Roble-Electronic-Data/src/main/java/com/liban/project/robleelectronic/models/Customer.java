@@ -1,17 +1,30 @@
 package com.liban.project.robleelectronic.models;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "customer")
 public class Customer extends User {
 
+    @Column(name = "address_line1")
     private String addressLine1;
+
+    @Column(name = "address_line2")
     private String addressLine2;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "zipcode")
     private String zipcode;
 
     //oneToMany
+    @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<>();
 
     public String getAddressLine1() {
