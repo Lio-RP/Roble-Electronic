@@ -1,6 +1,6 @@
-package com.liban.project.robleelectronic.models;
+package com.roble.springproject.robleelectronic.models;
 
-import com.liban.project.robleelectronic.enums.OrderStatus;
+import com.roble.springproject.robleelectronic.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order extends BaseEntity {
 
     @Column(name = "order_number")
@@ -18,9 +18,8 @@ public class Order extends BaseEntity {
     @Column(name = "date_ordered")
     private LocalDate dateOrdered;
 
-    //ManyToMany
     @ManyToMany
-    @JoinTable(name = "order_products", joinColumns = @JoinColumn(name = "order_id"),
+    @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "order_id"),
                         inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> products = new HashSet<>();
     

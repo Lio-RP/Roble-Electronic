@@ -1,4 +1,4 @@
-package com.liban.project.robleelectronic.models;
+package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
 

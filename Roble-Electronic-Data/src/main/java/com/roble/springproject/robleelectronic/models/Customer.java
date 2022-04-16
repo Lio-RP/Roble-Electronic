@@ -1,4 +1,4 @@
-package com.liban.project.robleelectronic.models;
+package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -23,7 +23,6 @@ public class Customer extends User {
     @Column(name = "zipcode")
     private String zipcode;
 
-    //oneToMany
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<>();
 
@@ -67,7 +66,7 @@ public class Customer extends User {
         this.zipcode = zipcode;
     }
 
-    public Set<Order> getOrders() {
+   public Set<Order> getOrders() {
         return orders;
     }
 
