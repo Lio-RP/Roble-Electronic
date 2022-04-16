@@ -1,6 +1,6 @@
 package com.liban.project.robleelectronic.models;
 
-import com.liban.project.robleelectronic.models.enums.OrderStatus;
+import com.liban.project.robleelectronic.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

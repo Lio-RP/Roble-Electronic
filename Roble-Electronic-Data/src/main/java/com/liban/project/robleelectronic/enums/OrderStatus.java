@@ -1,4 +1,4 @@
-package com.liban.project.robleelectronic.models.enums;
+package com.liban.project.robleelectronic.enums;
 
 public enum OrderStatus {
 
