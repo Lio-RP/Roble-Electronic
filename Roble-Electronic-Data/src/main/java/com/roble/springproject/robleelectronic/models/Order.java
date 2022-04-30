@@ -28,6 +28,9 @@ public class Order extends BaseEntity {
     
     @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
     
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
