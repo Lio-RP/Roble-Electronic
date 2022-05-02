@@ -49,7 +49,7 @@ class ProductServiceImplTest {
         //When
         when(productRepository.save(any())).thenReturn(prod);
 
-        Product savedProd = productService.save(prod);
+        Product savedProd = productService.save(prod, cat.getId());
 
         //Then
         verify(productRepository).save(any());

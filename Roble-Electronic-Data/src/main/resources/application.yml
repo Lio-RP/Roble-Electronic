@@ -1,14 +1,14 @@
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/roble_elco_db
-    username: roble_elco
-    password: ucJi)SL9?3)UKql///###
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    database: mysql
-    show-sql: true
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/roble_elco_db
+#    username: roble_elco
+#    password: ucJi)SL9?3)UKql///###
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    database: mysql
+#    show-sql: true
 #    properties:
 #          javax:
 #            persistence:

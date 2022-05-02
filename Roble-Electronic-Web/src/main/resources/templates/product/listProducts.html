@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'home')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Roble ElCo</title>
+</head>
+<body>
+<!--    <div class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <form action="">
+                    <div class="form-group">
+                        <div class="input-group d-none d-lg-flex flex-nowrap mx-4">
+                            <select class="form-select flex-shrink-0" name="description" id="description" style="width: 10.5rem;">
+                                <option>All categories</option>
+                                <option th:each="categroy : ${categories}"
+                                        th:value="${categroy.getDescription()}"
+                                        th:text="${categroy.getDescription()}">
+                                </option>
+                            </select>
+                            <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
+                            <button class="btn btn-lg btn-primary">
+                                <span> <i class="fa-solid fa-magnifying-glass"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>-->
+
+<br>
+<br>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 align-items-end ">
+            <h1 class="font-weight-normal text-left" th:text="${category.getDescription()} + ' > Products'"></h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 col-md-3" th:each="product : ${listProducts}">
+            <div class="row">
+                <div class="col-12">
+                    <a href="">
+                        <img src="../../static/images/notebook1.jpg" alt="" style="width: 250px; height: 250px"
+                             th:src="@{/images/mobile1.jpg}">
+                    </a>
+                </div>
+            </div>
+            <div class="row justify-content-center my-2">
+                <div class="col-8 b-0">
+                    <p class="font-weight-light" th:text="${product.getName()}">Product Name</p>
+                    <p th:text="${product.getPrice()}">25000 rup</p>
+                    <a href="" class="btn btn-lg btn-primary">Add Cart</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-3">
+             <div class="row">
+                 <div class="col-12">
+                     <a href="">
+                         <img src="../../static/imgs/mobile1.jpg" alt="" style="width: 250px; height: 350px">
+                     </a>
+                 </div>
+             </div>
+             <div class="row justify-content-center my-2">
+                 <div class="col-8 b-0">
+                     <p class="font-weight-light">Product Name</p>
+                     <p>25000 rup</p>
+                 </div>
+             </div>
+         </div>-->
+    </div>
+</div>
+<br>
+<br>
+</body>
+</html>
