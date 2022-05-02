@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'listProducts')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h1 class="card-title">List Of Products</h1>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>ProductName</th>
+                                    <th>ProductVendor</th>
+                                    <th>ProductPrice</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="product : ${listProducts}">
+                                    <td th:text="${product.getId()}">123</td>
+                                    <td th:text="${product.getName()}">Smart Phones</td>
+                                    <td th:text="${product.getVendor()}">Xiomi</td>
+                                    <td th:text="${product.getPrice()} + 'руб'">3985 rub</td>
+                                    <td>
+                                        <a href="#" th:href="@{'/roble_elco/admin/products/' + ${product.getId()} + '/view'}">
+                                            View</a> |
+                                        <a href="#" th:href="@{'/roble_elco/admin/categories/' + ${category.getId()} + '/products/' + ${product.getId()} + '/edit'}">
+                                            Edit</a> |
+                                        <a href="#" th:href="@{'/roble_elco/admin/products/' + ${product.getId()} + '/delete'}">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-lg btn-primary"
+                   th:href="@{'/roble_elco/admin/categories/' + ${category.getId()} + '/products/new'}">Add Product</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

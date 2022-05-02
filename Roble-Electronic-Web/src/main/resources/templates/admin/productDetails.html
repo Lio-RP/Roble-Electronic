@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'productDetails')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-header bg-primary">
+                           <div class="row">
+                               <div class="col-8">
+                                   <h1 class="card-title">Product Details</h1>
+                               </div>
+                               <div class="col-4">
+                                   <a href="#" class="btn btn-lg btn-light">Edit Photo</a>
+                               </div>
+                           </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <h3 th:text="${product.getName()}">Product Name</h3>
+                                    <p th:text="${product.getVendor()}">Product Vendor</p>
+                                    <p th:text="${product.getPrice()} + ' Рубл'">Price</p>
+                                </div>
+                                <div>
+                                    <img th:src="@{/images/mobile1.jpg}"
+                                            src="" alt="" style="width: 200px; height: 170px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <p th:text="${product.getDescription()}">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam aliquid aperiam aspernatur consequuntur delectus deleniti dolore fugit hic id incidunt nostrum, pariatur provident qui quos ratione rem reprehenderit rerum sed sequi totam vitae voluptatem. A aliquam, aspernatur beatae, commodi deleniti dicta iure obcaecati repellat sed sint, velit vero voluptate! A commodi consectetur dignissimos doloremque, eos et incidunt iure laudantium magni, modi molestias neque nesciunt possimus quaerat quas sint sunt veritatis voluptate. Atque facere impedit pariatur praesentium quasi quisquam quod sed! Ad adipisci blanditiis, consequuntur culpa cumque earum facilis illo impedit in, non nostrum odio perspiciatis, provident quos soluta ullam.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

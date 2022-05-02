@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'listCategories')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h1 class="card-title">List Of Categories</h1>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="category : ${listCategories}">
+                                    <td th:text="${category.getId()}">1</td>
+                                    <td th:text="${category.getDescription()}">Category 1</td>
+                                    <td>
+                                        <a href="" th:href="@{'/roble_elco/admin/categories/' + ${category.getId()} + '/products'}">
+                                            ViewProducts
+                                        </a> |
+                                        <a href="" th:href="@{'/roble_elco/admin/categories/' + ${category.getId()} + '/delete'}">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
