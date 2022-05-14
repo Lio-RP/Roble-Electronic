@@ -26,11 +26,11 @@ public class AdminController {
         return "admin/listCategories";
     }
 
-/*    @GetMapping("products")
-    public String getProducts(Model model){
-        model.addAttribute("listProducts", productService.getAllProducts());
-        return "admin/listProducts";
-    }*/
+//    @GetMapping("products")
+//    public String getProducts(Model model){
+//        model.addAttribute("listProducts", productService.getAllProducts());
+//        return "admin/listProducts";
+//    }
 
     @GetMapping("categories/{categoryId}/products")
     public String getProductsBasedOnCategory(@PathVariable("categoryId") Long categoryId,
@@ -47,10 +47,13 @@ public class AdminController {
         return "redirect:/roble_elco/admin/categories";
     }
 
-    @GetMapping("products/{productId}/delete")
-    public String deleteProduct(@PathVariable("productId") Long productId){
+    @GetMapping("categories/{categoryId}/products/{productId}/delete")
+    public String deleteProduct(@PathVariable("categoryId") Long categoryId,
+                                @PathVariable("productId") Long productId){
+
         productService.deleteById(productId);
-        return "redirect:/roble_elco/admin/products";
+
+        return "redirect:/roble_elco/admin/categories/" + categoryId + "/products";
     }
 
     @GetMapping({"products/{productId}/view"})

@@ -34,9 +34,9 @@
                                     <td>
                                         <a href="#" th:href="@{'/roble_elco/admin/products/' + ${product.getId()} + '/view'}">
                                             View</a> |
-                                        <a href="#" th:href="@{'/roble_elco/admin/categories/' + ${category.getId()} + '/products/' + ${product.getId()} + '/edit'}">
+                                        <a href="#" th:href="@{'/roble_elco/admin/categories/' + ${product.getCategory().getId()} + '/products/' + ${product.getId()} + '/edit'}">
                                             Edit</a> |
-                                        <a href="#" th:href="@{'/roble_elco/admin/products/' + ${product.getId()} + '/delete'}">
+                                        <a href="#" th:href="@{'/roble_elco/admin/categories/' + ${product.getCategory().getId()} + '/products/' + ${product.getId()} + '/delete'}">
                                             Delete
                                         </a>
                                     </td>
