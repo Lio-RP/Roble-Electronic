@@ -14,9 +14,4 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/roble_elco/home")
-    public String getCategories(Model model){
-        model.addAttribute("categories", categoryService.getAllCategories());
-        return "fragments/layout";
-    }
 }

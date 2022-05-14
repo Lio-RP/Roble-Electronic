@@ -7,134 +7,97 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/jpg" href="../../static/images/logo.jpg" />
+        <link rel="shortcut icon" type="image/jpg" href="/images/logo.jpg" />
+
+
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/all.css">
 
         <title>Roble Electronic</title>
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-              crossorigin="anonymous">
-
-        <!--Fontawesome css-->
-        <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        />
+       <link
+               rel="stylesheet"
+               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+       />
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
-            body {
-                line-height: 1.5;
-                font-family: "Arvo", serif;
-                background-color: rgb(218, 218, 227);
-                color: #34302D;
-            }
-
-            a:hover{
-                color: #5fa134;
-            }
-            ul li a{
-                font-weight: bold;
-                font-size: 15px;
-                color: white;
-            }
-            .active{
-                color: white !important;
-                background-color: #5fa134 !important;
-            }
-            .navbar-nav li{
-                margin: 0 5px;
-                padding: 0 10px;
-            }
-        </style>
-
     </head>
     <body>
+    <a class="navbar-brand" href="#"
+       th:href="@{'/'}"
+       style="font-size: 40px; font-weight:bold; font-family: SansSerif"><strong>Roble</strong> ElCo</a>
 
-        <nav class="navbar navbar-expand-lg navbar-dark py-2" style="background-color: rgb(24,46,94)">
-            <a class="navbar-brand" href="#"
-               th:href="@{'/'}"
-               style="font-size: 40px; font-weight:bold; font-family: SansSerif"><strong>Roble</strong> ElCo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-
-                    <li class="nav-item mx-3" th:class="${'home'==menu ? 'active' : ''}">
-                        <a class="nav-link" href="#"
-                           th:href="@{'/'}"
-                           th:title="'Home Page'">
-                            <span th:text="HOME">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categories
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                            <a class="dropdown-item" href="#"
-                               th:each="category: ${categories}"
-                               th:text="${category.getDescription()}"
-                                th:href="@{'/roble_elco/category/' + ${category.getId()} + '/products'}">Category 1</a>
-                        </div>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" href="#">
-                            <span th:text="'About Us'">About Us</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" href="#">
-                            <span th:text="Contact">Contact</span>
-                        </a>
-                    </li>
-                </ul>
-                <a th:href="@{'/roble_elco/cart'}" href="" class="btn btn-lg btn-light">
-                    <i class="fa-solid fa-cart-shopping"></i>
+            <li class="nav-item mx-3" th:class="${'home'==menu ? 'active' : ''}">
+                <a class="nav-link" href="#"
+                   th:href="@{'/'}"
+                   th:title="'Home Page'">
+                    <span th:text="HOME">Home</span>
                 </a>
-                <form action="" class="form-inline my-2 my-lg-0">
-                    <div class="form-group">
-                        <div class="input-group d-none d-lg-flex flex-nowrap mx-4">
-                            <select class="form-select flex-shrink-0" name="description" id="description" style="width: 10.5rem;">
-                                <option>All categories</option>
-                                <option th:each="categroy : ${categories}"
-                                        th:value="${categroy.getDescription()}"
-                                        th:text="${categroy.getDescription()}">
-                                </option>
-                            </select>
-                            <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
-                            <button class="btn btn-lg btn-primary">
-                                <span> <i class="fa-solid fa-magnifying-glass"></i></span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </nav>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                    <a class="dropdown-item" href="#"
+                       th:each="category: ${categories}"
+                       th:text="${category.getDescription()}"
+                       th:href="@{'/roble_elco/category/' + ${category.getId()} + '/products'}">Category 1</a>
+                </div>
+            </li>
+            <li class="nav-item mx-3">
+                <a class="nav-link" href="#">
+                    <span th:text="'About Us'">About Us</span>
+                </a>
+            </li>
 
+            <li class="nav-item mx-3">
+                <a class="nav-link" href="#">
+                    <span th:text="Contact">Contact</span>
+                </a>
+            </li>
+        </ul>
+        <a th:href="@{'/roble_elco/cart'}" href="" class="btn btn-lg btn-light">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+        <form action="" class="form-inline my-2 my-lg-0">
+            <div class="form-group">
+                <div class="input-group d-none d-lg-flex flex-nowrap mx-4">
+                    <select class="form-select flex-shrink-0" name="description" id="description" style="width: 10.5rem;">
+                        <option>All categories</option>
+                        <option th:each="categroy : ${categories}"
+                                th:value="${categroy.getDescription()}"
+                                th:text="${categroy.getDescription()}">
+                        </option>
+                    </select>
+                    <input class="form-control rounded-start w-100" type="text" placeholder="Search for products">
+                    <button class="btn btn-lg btn-primary">
+                        <span> <i class="fa-solid fa-magnifying-glass"></i></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>
         <div class="container-fluid">
             <div class="container xd-container">
                 <th:block th:include="${template}"/>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
+        <script type="text/javascript" src="/js/popper.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #slider {
+            overflow: hidden;
+        }
+        #slider figure {
+            position: relative;
+            width: 500%;
+            margin: 0;
+            left: 0;
+            animation: 20s slider infinite;
+        }
+        #slider figure img {
+            width: 20%;
+            float: left;
+        }
+        @keyframes slider {
+            0% {
+                left: 0;
+            }
+            20% {
+                left: 0;
+            }
+            25% {
+                left: -100%;
+            }
+            45% {
+                left: -100%;
+            }
+            50% {
+                left: -200%;
+            }
+            70% {
+                left: -200%;
+            }
+            75% {
+                left: -300%;
+            }
+            95% {
+                left: -300%;
+            }
+            100% {
+                left: -400%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="slider">
+    <figure>
+        <img src="../../static/resources/images/slide-1.jpg" th:src="@{/images/slide-1.jpg}"/>
+        <img src="../../static/resources/images/slide-2.png" th:src="@{/images/slide-2.png}"/>
+        <img src="../../static/resources/images/slide-4.png" th:src="@{/images/slide-4.png}"/>
+        <img src="../../static/resources/images/slide-2.png" th:src="@{/images/slide-2.png}"/>
+        <img src="../../static/resources/images/slide-1.jpg" th:src="@{/images/slide-1.jpg}"/>
+    </figure>
+</div>
+</body>
+</html>

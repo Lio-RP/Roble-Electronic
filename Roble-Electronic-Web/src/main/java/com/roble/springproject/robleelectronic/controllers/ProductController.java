@@ -1,13 +1,12 @@
 package com.roble.springproject.robleelectronic.controllers;
 
+import com.roble.springproject.robleelectronic.models.Category;
 import com.roble.springproject.robleelectronic.models.Product;
 import com.roble.springproject.robleelectronic.services.CategoryService;
 import com.roble.springproject.robleelectronic.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -40,5 +39,20 @@ public class ProductController {
         model.addAttribute("category", categoryService.getCategoryById(categoryId));
 
         return "product/listProducts";
+    }
+
+    @GetMapping("home")
+    public String initFindProductForm(Model model){
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("product", new Product());
+        return "fragments/layout";
+    }
+
+    @PostMapping("home")
+    public String processFindProductForm(@ModelAttribute("product") Product product,
+                                         Category category, Model model){
+        System.out.println("List Of Products");
+        return "redirect:/";
+        //return "redirect:/roble_elco/category/{categoryId}/products";
     }
 }

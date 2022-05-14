@@ -18,7 +18,7 @@
                                    <h1 class="card-title">Product Details</h1>
                                </div>
                                <div class="col-4">
-                                   <a href="#" class="btn btn-lg btn-light">Edit Photo</a>
+                                   <a href="#" th:href="@{'/roble_elco/admin/product/' + ${product.getId()} +'/image'}" class="btn btn-lg btn-light">Edit Photo</a>
                                </div>
                            </div>
                         </div>
@@ -30,7 +30,7 @@
                                     <p th:text="${product.getPrice()} + ' Рубл'">Price</p>
                                 </div>
                                 <div>
-                                    <img th:src="@{/images/mobile1.jpg}"
+                                    <img th:src="@{'/roble_elco/admin/product/' + ${product.getId()} + '/productImage'}"
                                             src="" alt="" style="width: 200px; height: 170px">
                                 </div>
                             </div>

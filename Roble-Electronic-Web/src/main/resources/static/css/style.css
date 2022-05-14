@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+body {
+    line-height: 1.5;
+    font-family: "Arvo", serif;
+    background-color: rgb(218, 218, 227) !important;
+    color: #34302D;
+}
+
+a:hover{
+    color: #5fa134;
+}
+ul li a{
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+}
+.active{
+    color: white !important;
+    background-color: #5fa134 !important;
+}
+.navbar-nav li{
+    margin: 0 5px;
+    padding: 0 10px;
+}

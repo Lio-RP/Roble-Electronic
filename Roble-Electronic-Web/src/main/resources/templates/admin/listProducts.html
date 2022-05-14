@@ -9,7 +9,7 @@
 
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-primary">
                         <h1 class="card-title">List Of Products</h1>
@@ -45,6 +45,7 @@
                         </table>
                     </div>
                 </div>
+                <br>
                 <a href="#" class="btn btn-lg btn-primary"
                    th:href="@{'/roble_elco/admin/categories/' + ${category.getId()} + '/products/new'}">Add Product</a>
             </div>
