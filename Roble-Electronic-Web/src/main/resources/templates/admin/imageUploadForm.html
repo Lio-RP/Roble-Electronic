@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'imageUploadForm')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-3">
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Upload a new Product image</h1>
+                    </div>
+                    <div class="panel-body">
+                        <form th:action="@{'/roble_elco/admin/product/' + ${product.getId()} +'/image'}" method="post"
+                              enctype="multipart/form-data">
+                            <label class="control-label">Upload Image</label>
+                            <input type="file" id="image" name="image" class="file">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
