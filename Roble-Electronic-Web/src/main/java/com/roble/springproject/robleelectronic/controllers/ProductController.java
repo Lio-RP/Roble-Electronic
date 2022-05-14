@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-@RequestMapping("/roble_elco/")
+@RequestMapping("/roble_elco")
 @Controller
 public class ProductController {
 
@@ -23,12 +23,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("home/products")
+    @GetMapping("")
     public String home(Model model){
         model.addAttribute("listProducts", productService.getAllProducts());
         model.addAttribute("categories", categoryService.getAllCategories());
 
-        return "product/home";
+        return "product/index";
     }
 
     @GetMapping("category/{categoryId}/products")
@@ -39,20 +39,5 @@ public class ProductController {
         model.addAttribute("category", categoryService.getCategoryById(categoryId));
 
         return "product/listProducts";
-    }
-
-    @GetMapping("home")
-    public String initFindProductForm(Model model){
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("product", new Product());
-        return "fragments/layout";
-    }
-
-    @PostMapping("home")
-    public String processFindProductForm(@ModelAttribute("product") Product product,
-                                         Category category, Model model){
-        System.out.println("List Of Products");
-        return "redirect:/";
-        //return "redirect:/roble_elco/category/{categoryId}/products";
     }
 }
