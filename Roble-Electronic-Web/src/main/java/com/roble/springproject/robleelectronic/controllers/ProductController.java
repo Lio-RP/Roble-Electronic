@@ -23,11 +23,20 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @ModelAttribute("categories")
+    public Set<Category> getAllCategories(){
+        return categoryService.getAllCategories();
+    }
+
+    @GetMapping("categories")
+    public String getCategories(){
+
+        return "fragments/layout";
+    }
+
     @GetMapping("")
     public String home(Model model){
         model.addAttribute("listProducts", productService.getAllProducts());
-        model.addAttribute("categories", categoryService.getAllCategories());
-
         return "product/index";
     }
 

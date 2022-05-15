@@ -2,41 +2,77 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         th:fragment="layout (template, menu)">
-    <head>
+<head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/jpg" href="/images/logo.jpg" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/jpg" href="/images/logo.jpg" />
 
 
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
-        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
 
-        <title>Roble Electronic</title>
-       <link
-               rel="stylesheet"
-               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-       />
+    <title>Roble Electronic</title>
+   <link
+           rel="stylesheet"
+           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+   />
 
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container my-3" sec:authorize="hasRole('ROLE_USER')">
+    <div class="row">
+        <div class="col-3">
+            <div class="dropdown">
+                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    CATEGORIES
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item"
+                       href="#"
+                       th:each="categroy : ${categories}"
+                       th:text="${categroy.getDescription()}"
+                       th:href="@{'/roble_elco/category/' + ${categroy.getId()} + '/products'}">Action</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <form action="#" method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select class="form-select flex-shrink-0" name="description" id="description" style="width: 10.5rem;">
+                            <option>All categories</option>
+                            <option th:each="categroy : ${categories}"
+                                    th:value="${categroy.getDescription()}"
+                                    th:text="${categroy.getDescription()}">
+                            </option>
+                        </select>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" style="height: 50px;">
+                    <button class="btn btn-lg btn-primary">
+                        <span> <i class="fa-solid fa-magnifying-glass"></i></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" style="color:white;">
                 <li class="nav-item active">
                     <a class="nav-link" href="#" th:href="@{'/roble_elco/'}">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -45,16 +81,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Category 1</a>
-                        <a class="dropdown-item" href="#">Category 2</a>
-                        <a class="dropdown-item" href="#">Category 3</a>
-                    </div>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="nav-link" href="#" th:href="@{'/roble_elco/admin/categories'}">Admin</a>
@@ -66,21 +92,18 @@
                     <a class="nav-link" href="#" th:href="@{'/logout'}">Logout</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </nav>
 
-        <div class="container-fluid">
-            <div class="container xd-container">
-                <th:block th:include="${template}"/>
-            </div>
-        </div>
 
-        <script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
-        <script type="text/javascript" src="/js/popper.min.js"></script>
-        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    </body>
+    <div class="container-fluid">
+        <div class="container xd-container">
+            <th:block th:include="${template}"/>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
 </html>

@@ -6,6 +6,35 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Here will go list of products!!!!!!!!!</h1>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 align-items-end ">
+                <h1
+                    th:text="${category.getDescription()} + ' > Products'"
+                    style="font-size: 14px; font-weight: 700;"></h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4 col-sm-6" th:each="product : ${listProducts}">
+                <div class="row" >
+                    <div class="col-12">
+                        <img
+                                th:src="@{'/roble_elco/admin/product/' + ${product.getId()} + '/productImage'}"
+                                alt="" width="250px" height="250px">
+                    </div>
+                    <div class="col-12" style="margin-top: 5px;">
+                        <p style="margin: 0">2500 RUB</p>
+                        <h2 style="font-size: 14px; font-weight: 600; margin: 0;">Product Name</h2>
+                    </div>
+                    <a
+                            href="#" class="btn btn-lg btn-primary"
+                            style="margin-top: 10px;">Add Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
