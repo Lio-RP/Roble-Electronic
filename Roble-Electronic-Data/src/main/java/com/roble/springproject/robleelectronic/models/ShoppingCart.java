@@ -15,9 +15,9 @@ public class ShoppingCart extends BaseEntity {
 
     @OneToOne
     private Product product;
-    
-    @Column(name = "total_price")
-    private BigDecimal totalPrice;
+
+    @Column(name = "subtotal")
+    private float subtotal;
 
     public int getQuantity() {
         return quantity;
@@ -33,5 +33,13 @@ public class ShoppingCart extends BaseEntity {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
     }
 }

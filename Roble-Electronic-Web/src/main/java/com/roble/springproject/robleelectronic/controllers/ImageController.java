@@ -1,6 +1,8 @@
 package com.roble.springproject.robleelectronic.controllers;
 
+import com.roble.springproject.robleelectronic.models.Category;
 import com.roble.springproject.robleelectronic.models.Product;
+import com.roble.springproject.robleelectronic.services.CategoryService;
 import com.roble.springproject.robleelectronic.services.ImageService;
 import com.roble.springproject.robleelectronic.services.ProductService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -13,17 +15,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Set;
 
 @Controller
 public class ImageController {
 
     private final ImageService imageService;
     private final ProductService productService;
+    public final CategoryService categoryService;
 
     public ImageController(ImageService imageService,
-                           ProductService productService) {
+                           ProductService productService, CategoryService categoryService) {
         this.imageService = imageService;
         this.productService = productService;
+        this.categoryService = categoryService;
+    }
+
+    @ModelAttribute("categories")
+    public Set<Category> getAllCategories(){
+        return categoryService.getAllCategories();
     }
 
     @GetMapping("/roble_elco/admin/product/{productId}/image")

@@ -28,11 +28,11 @@
     <![endif]-->
 </head>
 <body>
-<div class="container my-3" sec:authorize="hasRole('ROLE_USER')">
+<div class="container mt-2">
     <div class="row">
         <div class="col-3">
             <div class="dropdown">
-                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     CATEGORIES
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -46,9 +46,9 @@
         </div>
         <div class="col-md-9">
             <form action="#" method="post">
-                <div class="input-group mb-3">
+                <div class="input-group">
                     <div class="input-group-prepend">
-                        <select class="form-select flex-shrink-0" name="description" id="description" style="width: 10.5rem;">
+                        <select class="form-select flex-shrink-0" name="description" id="description" style="width: 7.5rem; height: 35px;">
                             <option>All categories</option>
                             <option th:each="categroy : ${categories}"
                                     th:value="${categroy.getDescription()}"
@@ -56,8 +56,8 @@
                             </option>
                         </select>
                     </div>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" style="height: 50px;">
-                    <button class="btn btn-lg btn-primary">
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" style="height: 35px;">
+                    <button class="btn btn-primary" style="height: 35px;">
                         <span> <i class="fa-solid fa-magnifying-glass"></i></span>
                     </button>
                 </div>
@@ -65,7 +65,7 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary" style="margin-top: 3px;">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

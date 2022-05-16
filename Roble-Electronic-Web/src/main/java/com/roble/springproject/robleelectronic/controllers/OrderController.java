@@ -1,12 +1,16 @@
 package com.roble.springproject.robleelectronic.controllers;
 
+import com.roble.springproject.robleelectronic.models.Category;
 import com.roble.springproject.robleelectronic.models.Customer;
 import com.roble.springproject.robleelectronic.models.Payment;
+import com.roble.springproject.robleelectronic.services.CategoryService;
 import com.roble.springproject.robleelectronic.services.ProductService;
 import com.roble.springproject.robleelectronic.services.ShoppingCartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RequestMapping("/roble_elco/")
 @Controller
@@ -14,18 +18,26 @@ public class OrderController {
 
     public final ProductService productService;
     public final ShoppingCartService shoppingCartService;
+    public final CategoryService categoryService;
 
     public OrderController(ProductService productService,
-                           ShoppingCartService shoppingCartService) {
+                           ShoppingCartService shoppingCartService,
+                           CategoryService categoryService) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
+        this.categoryService = categoryService;
     }
 
-    @GetMapping("home/products/{productId}/addCart")
+    @ModelAttribute("categories")
+    public Set<Category> getAllCategories(){
+        return categoryService.getAllCategories();
+    }
+
+    @GetMapping("products/{productId}/addToCart")
     public String addToCart(@PathVariable("productId") Long productId,
                             Model model){
-
-        return "";
+        shoppingCartService.addToCart(productId);
+        return "redirect:/roble_elco";
     }
 
     @GetMapping("cart")

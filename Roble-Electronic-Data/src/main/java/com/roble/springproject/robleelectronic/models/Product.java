@@ -20,7 +20,7 @@ public class Product extends BaseEntity {
     private String vendor;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private float price;
 
     @Column(name = "image")
     @Lob
@@ -54,11 +54,11 @@ public class Product extends BaseEntity {
         this.vendor = vendor;
     }
 
-    public BigDecimal getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

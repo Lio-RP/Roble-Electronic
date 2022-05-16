@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @Controller
 @RequestMapping("/roble_elco/admin/")
 public class AdminController {
@@ -20,9 +22,13 @@ public class AdminController {
         this.productService = productService;
     }
 
+    @ModelAttribute("categories")
+    public Set<Category> getAllCategories(){
+        return categoryService.getAllCategories();
+    }
+
     @GetMapping("categories")
     public String getCategories(Model model){
-        model.addAttribute("listCategories", categoryService.getAllCategories());
         return "admin/listCategories";
     }
 

@@ -38,7 +38,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/roble_elco/", "/index", "/css/*", "/js/*", "/images/*").permitAll()
+                .antMatchers("/", "/roble_elco", "/roble_elco/", "/index", "/css/*", "/js/*", "/images/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
                 .antMatchers(HttpMethod.PUT, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
                 .antMatchers(HttpMethod.DELETE, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
