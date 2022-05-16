@@ -6,8 +6,8 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row mt-5">
+    <div class="container">
+        <div class="row mt-5" style="width: 55rem; margin-left: -6.5rem;">
             <h2>Billing Details</h2>
             <div class="col-md-12">
                 <div class="row">
@@ -51,7 +51,8 @@
                                 <label>Phone <b style="color:red">*</b></label>
                                 <input type="text" class="form-control" placeholder="">
                             </div>
-                            <button type="submit" class="btn btn-lg btn-primary"
+                            <button type="submit" class="btn btn-primary"
+                                    style="margin-bottom: 10px; font-size: 14px; font-weight: 700;"
                                     th:text="'Proceed To Payment'">
                             </button>
                         </form>
@@ -66,7 +67,7 @@
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped">
-                                        <thead>
+                                        <thead class="thead-dark">
                                         <tr>
                                             <td style="width:150px">Product</td>
                                             <td style="width:100px">Quantity</td>
