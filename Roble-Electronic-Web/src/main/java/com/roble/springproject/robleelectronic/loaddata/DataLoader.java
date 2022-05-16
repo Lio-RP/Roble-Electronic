@@ -42,7 +42,7 @@ public class DataLoader implements CommandLineRunner {
                 "PPG sensor for tracking changes in heart rate;" +
                 "monitoring of blood oxygen level measurmenet (SpO2 indicator).");
 
-        //Product1
+        //Product2
         Product prod2 = new Product();
         prod2.setName("Fitness bracelets two");
         prod2.setVendor("Xiaomi");

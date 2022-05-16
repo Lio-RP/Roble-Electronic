@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -32,7 +33,7 @@ public class ImageController {
     }
 
     @ModelAttribute("categories")
-    public Set<Category> getAllCategories(){
+    public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
     }
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RequestMapping("/roble_elco/")
@@ -29,7 +30,7 @@ public class OrderController {
     }
 
     @ModelAttribute("categories")
-    public Set<Category> getAllCategories(){
+    public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
     }
 
@@ -37,7 +38,8 @@ public class OrderController {
     public String addToCart(@PathVariable("productId") Long productId,
                             Model model){
         shoppingCartService.addToCart(productId);
-        return "redirect:/roble_elco";
+        Category category = productService.getProductById(productId).getCategory();
+        return "redirect:/roble_elco/category/" + category.getId() + "/products";
     }
 
     @GetMapping("cart")

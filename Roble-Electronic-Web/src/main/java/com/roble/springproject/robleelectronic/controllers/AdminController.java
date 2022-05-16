@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -23,7 +24,7 @@ public class AdminController {
     }
 
     @ModelAttribute("categories")
-    public Set<Category> getAllCategories(){
+    public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
     }
 

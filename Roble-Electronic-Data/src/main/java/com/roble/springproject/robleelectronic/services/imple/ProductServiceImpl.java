@@ -8,9 +8,7 @@ import com.roble.springproject.robleelectronic.services.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -66,14 +64,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Set<Product> getAllProducts() {
-        Set<Product> products = new HashSet<>();
+    public List<Product> getAllProducts() {
+        List<Product> products = new ArrayList<>();
         productRepository.findAll().forEach(products::add);
         return products;
     }
 
     @Override
-    public Set<Product> getProductsBasedOnCategory(Long id) {
+    public List<Product> getProductsBasedOnCategory(Long id) {
         Optional<Category> categoryOptional = categoryRepository.findById(id);
         if(!categoryOptional.isPresent()){
             throw new RuntimeException(String.format("Category with id %s ", id + " Not Found"));
@@ -81,7 +79,7 @@ public class ProductServiceImpl implements ProductService {
 
         Category category = categoryOptional.get();
 
-        Set<Product> products = category.getProducts();
+        List<Product> products = category.getProducts();
 
         return products;
     }

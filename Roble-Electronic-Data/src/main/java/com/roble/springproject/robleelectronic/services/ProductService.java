@@ -2,15 +2,16 @@ package com.roble.springproject.robleelectronic.services;
 
 import com.roble.springproject.robleelectronic.models.Product;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ProductService {
 
     Product save(Product object, Long categoryId);
 
-    Set<Product> getAllProducts();
+    List<Product> getAllProducts();
 
-    Set<Product> getProductsBasedOnCategory(Long id);
+    List<Product> getProductsBasedOnCategory(Long id);
 
     Product getProductById(Long productId);
 

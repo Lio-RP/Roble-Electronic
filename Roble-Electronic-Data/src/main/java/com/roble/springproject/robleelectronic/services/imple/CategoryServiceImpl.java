@@ -5,6 +5,7 @@ import com.roble.springproject.robleelectronic.repositories.CategoryRepository;
 import com.roble.springproject.robleelectronic.services.CategoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,8 +25,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Set<Category> getAllCategories() {
-        Set<Category> categories = new HashSet<>();
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
         categoryRepository.findAll().forEach(categories::add);
         return categories;
     }

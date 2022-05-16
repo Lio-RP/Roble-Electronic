@@ -1,7 +1,9 @@
 package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,7 +26,7 @@ public class Customer extends User {
     private String zipcode;
 
     @OneToMany(mappedBy = "customer")
-    private Set<Order> orders = new HashSet<>();
+    private List<Order> orders = new ArrayList<>();
 
     public String getAddressLine1() {
         return addressLine1;
@@ -66,11 +68,11 @@ public class Customer extends User {
         this.zipcode = zipcode;
     }
 
-   public Set<Order> getOrders() {
+   public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 }

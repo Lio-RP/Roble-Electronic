@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RequestMapping("/roble_elco")
@@ -24,7 +25,7 @@ public class ProductController {
     }
 
     @ModelAttribute("categories")
-    public Set<Category> getAllCategories(){
+    public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
     }
 
@@ -43,10 +44,16 @@ public class ProductController {
     @GetMapping("category/{categoryId}/products")
     public String getProductsByCategory(@PathVariable("categoryId") Long categoryId,
                                         Model model){
-        Set<Product> listProducts = productService.getProductsBasedOnCategory(categoryId);
+        List<Product> listProducts = productService.getProductsBasedOnCategory(categoryId);
         model.addAttribute("listProducts", listProducts);
         model.addAttribute("category", categoryService.getCategoryById(categoryId));
 
         return "product/listProducts";
+    }
+
+    @GetMapping("products/{productId}/view")
+    public String productView(@PathVariable("productId") Long productId, Model model){
+        model.addAttribute("product", productService.getProductById(productId));
+        return "product/productDetails";
     }
 }
