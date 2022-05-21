@@ -205,31 +205,31 @@ section {
 /*END CART*/
 
 /*CHECKOUT SECTION-->*/
-.container {
+.container--checkout {
     margin: 15px 10px;
     display: flex;
     justify-content: space-between;
 }
 
-.form-row {
+.form-row--checkout {
     margin: 0;
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-.form-group {
+.form-group--checkout {
     display: flex;
     margin-bottom: 10px;
     padding: 5px;
 }
 
-.form-group input {
+.form-group--checkout input {
     margin-left: 5px;
     width: 350px;
 }
 
-.form-group label {
+.form-group--checkout label {
     width: 150px;
     margin-right: auto;
     font-size: 14px;
@@ -281,20 +281,17 @@ section {
 
 .order--complete_btn {
     width: 250px;
-    margin-top: 4rem;
-    margin-left: 0;
+    margin-top: 0;
+    margin-left: 17rem;
     text-align: center;
-    text-decoration: none;
     background-color: #3e8e41;
     padding: 8px;
-    text-decoration: none;
     color: #ffffff;
     border-radius: 10px;
 
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
-    text-align: center;
     border: 1px solid #3e8e41;
 }
 /*END CHECKOUT SECTION*/

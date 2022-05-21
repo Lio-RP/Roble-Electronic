@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'cart')}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>Enter Your Credit Card Here!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
+
+    <section>
+        <div class="container--checkout">
+            <form>
+                <div class="form-row--checkout">
+                    <div class="form-group--checkout">
+                        <label>Card Number <b>*</b></label>
+                        <input type="email" class="form-control--checkout" placeholder="First Name" />
+                    </div>
+                    <div class="form-group--checkout">
+                        <label>Card Name <b>*</b></label>
+                        <input type="password" class="form-control--checkout" placeholder="Last Name" />
+                    </div>
+                    <div class="form-group--checkout">
+                        <label>Exp Date <b>*</b></label>
+                        <input type="text" class="form-control--checkout" />
+                    </div>
+                    <div class="form-group--checkout">
+                        <label>CVV <b>*</b></label>
+                        <input type="text" class="form-control--checkout" placeholder="1234 Main St" />
+                    </div>
+                </div>
+                <button type="submit" class="order--complete_btn">Proceed To Payment</button>
+            </form>
+            <div class="order--details">
+                <div class="order--details_title">
+                    <h3>Your Order Details</h3>
+                </div>
+                <div class="order">
+                    <div class="order--head">
+                        <h4>Product</h4>
+                        <h4>Quantity</h4>
+                        <h4>Price</h4>
+                    </div>
+                    <hr />
+                    <div class="order--body">
+                    <p>Iphone Red 62GB</p>
+                    <p>5</p>
+                    <p>$259.00</p>
+                </div>
+                    <div class="order--body">
+                        <p>Iphone Red 62GB</p>
+                        <p>5</p>
+                        <p>$259.00</p>
+                    </div>
+                    <div class="order--body">
+                        <p>Iphone Red 62GB</p>
+                        <p>5</p>
+                        <p>$259.00</p>
+                    </div>
+                    <div class="order--body">
+                        <h4>Totals:
+                            <small style="fontSize: '14px'; fontWeight:'400'; marginLeft: '10px'">$846.00</small>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>

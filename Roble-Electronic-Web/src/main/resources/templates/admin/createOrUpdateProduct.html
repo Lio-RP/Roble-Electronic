@@ -50,7 +50,8 @@
                         <label class="col-sm-3 col-form-label">Description</label>
                         <div class="col-sm-9" th:class="${#fields.hasErrors('description')}
                         ?'col-sm-9 alert-danger':'col-sm-9'">
-                            <textarea class="form-control" th:field="*{description}" rows="3" th:errorclass="invalid"></textarea>
+                            <textarea class="form-control" th:field="*{description}" rows="3" th:errorclass="invalid">
+                            </textarea>
                             <span class="form-text" th:if="${#fields.hasErrors('description')}">
                                 <ul>
                                     <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>

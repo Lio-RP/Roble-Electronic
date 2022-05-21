@@ -26,7 +26,7 @@ public class AdminController {
         this.productService = productService;
     }
 
-    @ModelAttribute("product")
+/*    @ModelAttribute("product")
     public Product productObject(){
         return new Product();
     }
@@ -34,10 +34,11 @@ public class AdminController {
     @ModelAttribute("categories")
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
-    }
+    }*/
 
     @GetMapping("categories")
     public String getCategories(Model model){
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "admin/listCategories";
     }
 
@@ -100,6 +101,7 @@ public class AdminController {
 
             return "redirect:/roble_elco/admin/products/" + savedProduct.getId() + "/view";
         }
+
     }
 
     @GetMapping("categories/{categoryId}/products/{productId}/edit")
