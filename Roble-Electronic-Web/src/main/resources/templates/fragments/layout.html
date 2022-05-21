@@ -45,18 +45,25 @@
             </div>
         </div>
         <div class="col-md-9">
-            <form action="#" method="post">
+            <form th:action="@{'/roble_elco/products'}" method="get">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <select class="form-select flex-shrink-0" name="description" id="description" style="width: 7.5rem; height: 35px;">
-                            <option>All categories</option>
+                            <option value="">All categories</option>
                             <option th:each="categroy : ${categories}"
                                     th:value="${categroy.getDescription()}"
                                     th:text="${categroy.getDescription()}">
                             </option>
                         </select>
                     </div>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" style="height: 35px;">
+                    <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Search by product name"
+                            class="form-control"
+                            aria-label="Text input with dropdown button"
+                            style="height: 35px;">
                     <button class="btn btn-primary" style="height: 35px;">
                         <span> <i class="fa-solid fa-magnifying-glass"></i></span>
                     </button>

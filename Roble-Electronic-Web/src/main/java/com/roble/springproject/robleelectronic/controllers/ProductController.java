@@ -6,9 +6,12 @@ import com.roble.springproject.robleelectronic.services.CategoryService;
 import com.roble.springproject.robleelectronic.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 @RequestMapping("/roble_elco")
@@ -55,5 +58,42 @@ public class ProductController {
     public String productView(@PathVariable("productId") Long productId, Model model){
         model.addAttribute("product", productService.getProductById(productId));
         return "product/productDetails";
+    }
+
+    @GetMapping("/products")
+    public String proccessFindProduct(@RequestParam("description") String description,
+                                      @RequestParam("name") String name,
+                                      Model model){
+
+        List<Product> listProducts = new ArrayList<>();
+
+        if(description == ""){
+            System.out.println("the description is empty");
+            listProducts = productService.findByNameLike(name.toLowerCase());
+        }else {
+            System.out.println("the description is not empty");
+            listProducts = productService.findByNameLike(name.toLowerCase(), description);
+            model.addAttribute("category", categoryService.findByDescription(description));
+        }
+
+        System.out.println(listProducts);
+        System.out.println(categoryService.findByDescription(description));
+
+        if(listProducts.isEmpty()){
+
+            //Not found document;
+            //result.rejectValue("name", "notFound", "Not Found");
+            return "product/index";
+        }else if (listProducts.size() == 1) {
+
+            //found one product:
+            return "redirect:/roble_elco/products/" + listProducts.get(0).getId() + "/view";
+
+        }else {
+
+            //found more then one
+            model.addAttribute("listProducts", listProducts);
+            return "product/listProducts";
+        }
     }
 }

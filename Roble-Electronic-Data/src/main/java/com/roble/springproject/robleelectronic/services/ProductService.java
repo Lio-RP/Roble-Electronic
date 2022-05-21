@@ -15,5 +15,9 @@ public interface ProductService {
 
     Product getProductById(Long productId);
 
+    List<Product> findByNameLike(String name);
+
+    List<Product> findByNameLike(String name, String description);
+
     void deleteById(Long productId);
 }

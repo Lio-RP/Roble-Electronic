@@ -2,6 +2,7 @@ package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -76,5 +77,17 @@ public class Product extends BaseEntity {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", price=" + price +
+                ", image=" + Arrays.toString(image) +
+                ", category=" + category +
+                '}';
     }
 }

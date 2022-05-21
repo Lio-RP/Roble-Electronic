@@ -13,5 +13,7 @@ public interface CategoryService {
 
     Category getCategoryById(Long categoryId);
 
+    Category findByDescription(String description);
+
     void deleteById(Long id);
 }

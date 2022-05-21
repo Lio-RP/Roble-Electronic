@@ -93,6 +93,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findByNameLike(String name) {
+        return productRepository.findByNameLike(name);
+    }
+
+    @Override
+    public List<Product> findByNameLike(String name, String description) {
+        return productRepository.findByNameLike(name, description);
+    }
+
+    @Override
     public void deleteById(Long productId) {
         productRepository.deleteById(productId);
     }

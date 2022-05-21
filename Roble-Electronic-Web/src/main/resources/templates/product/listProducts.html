@@ -8,7 +8,9 @@
 <body>
 
     <section>
-        <p class="product--list--title" th:text="${category.getDescription()}">Category Name</p>
+       <p
+               class="product--list--title"
+               th:text="${category} ? ${category.getDescription()}:''">Category Name</p>
         <hr>
         <div class="product--list">
             <div class="product" th:each="product : ${listProducts}">
