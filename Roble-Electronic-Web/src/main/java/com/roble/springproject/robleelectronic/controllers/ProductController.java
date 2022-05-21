@@ -32,6 +32,11 @@ public class ProductController {
         return categoryService.getAllCategories();
     }
 
+    @ModelAttribute("product")
+    public Product productObject(){
+        return new Product();
+    }
+
     @GetMapping("categories")
     public String getCategories(){
 
@@ -61,17 +66,22 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public String proccessFindProduct(@RequestParam("description") String description,
-                                      @RequestParam("name") String name,
+    public String proccessFindProduct(Product product,
+                                      BindingResult result,
                                       Model model){
 
         List<Product> listProducts = new ArrayList<>();
+        String name = "";
+        String description = "";
 
-        if(description == ""){
+        if(product.getCategory().getDescription() == ""){
             System.out.println("the description is empty");
+            name = product.getName() == null ?  "": product.getName();
             listProducts = productService.findByNameLike(name.toLowerCase());
         }else {
             System.out.println("the description is not empty");
+            name = product.getName();
+            description = product.getCategory().getDescription();
             listProducts = productService.findByNameLike(name.toLowerCase(), description);
             model.addAttribute("category", categoryService.findByDescription(description));
         }
@@ -82,7 +92,7 @@ public class ProductController {
         if(listProducts.isEmpty()){
 
             //Not found document;
-            //result.rejectValue("name", "notFound", "Not Found");
+            result.rejectValue("name", "notFound", "Not Found");
             return "product/index";
         }else if (listProducts.size() == 1) {
 

@@ -6,8 +6,10 @@ import com.roble.springproject.robleelectronic.services.CategoryService;
 import com.roble.springproject.robleelectronic.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -15,12 +17,18 @@ import java.util.Set;
 @RequestMapping("/roble_elco/admin/")
 public class AdminController {
 
+    public static final String CREATE_OR_UPDATE_PRODUCT = "admin/createOrUpdateProduct";
     public final CategoryService categoryService;
     public final ProductService productService;
 
     public AdminController(CategoryService categoryService, ProductService productService) {
         this.categoryService = categoryService;
         this.productService = productService;
+    }
+
+    @ModelAttribute("product")
+    public Product productObject(){
+        return new Product();
     }
 
     @ModelAttribute("categories")
@@ -76,17 +84,22 @@ public class AdminController {
                                     Model model){
         //model.addAttribute("category", categoryService.getCategoryById(categoryId));
         model.addAttribute("product", new Product());
-        return "admin/createOrUpdateProduct";
+        return CREATE_OR_UPDATE_PRODUCT;
     }
 
     @PostMapping("categories/{categoryId}/products/new")
-    public String processCreatingProduct(@ModelAttribute("product") Product product,
+    public String processCreatingProduct(@Valid @ModelAttribute("product") Product product,
+                                         BindingResult result,
                                          @PathVariable("categoryId") Long categoryId){
-        Category category = categoryService.getCategoryById(categoryId);
-        product.setCategory(category);
-        Product savedProduct = productService.save(product, categoryId);
+        if(result.hasErrors()){
+            return CREATE_OR_UPDATE_PRODUCT;
+        }else {
+            Category category = categoryService.getCategoryById(categoryId);
+            product.setCategory(category);
+            Product savedProduct = productService.save(product, categoryId);
 
-        return "redirect:/roble_elco/admin/products/" + savedProduct.getId() + "/view";
+            return "redirect:/roble_elco/admin/products/" + savedProduct.getId() + "/view";
+        }
     }
 
     @GetMapping("categories/{categoryId}/products/{productId}/edit")
@@ -97,18 +110,22 @@ public class AdminController {
         //Category category = categoryService.getCategoryById(categoryId);
         //model.addAttribute("category", category);
         model.addAttribute("product",product);
-        return "admin/createOrUpdateProduct";
+        return CREATE_OR_UPDATE_PRODUCT;
     }
 
     @PostMapping("categories/{categoryId}/products/{productId}/edit")
-    public String processUpdatingProduct(@ModelAttribute("product") Product product,
+    public String processUpdatingProduct(@Valid @ModelAttribute("product") Product product,
+                                         BindingResult result,
                                          @PathVariable("categoryId") Long categoryId,
                                          @PathVariable("productId") Long productId){
-
-        Category category = categoryService.getCategoryById(categoryId);
-        product.setId(productId);
-        product.setCategory(category);
-        Product savedProduct = productService.save(product, categoryId);
-        return "redirect:/roble_elco/admin/products/" + savedProduct.getId() + "/view";
+        if(result.hasErrors()){
+            return CREATE_OR_UPDATE_PRODUCT;
+        }else{
+            Category category = categoryService.getCategoryById(categoryId);
+            product.setId(productId);
+            product.setCategory(category);
+            Product savedProduct = productService.save(product, categoryId);
+            return "redirect:/roble_elco/admin/products/" + savedProduct.getId() + "/view";
+        }
     }
 }

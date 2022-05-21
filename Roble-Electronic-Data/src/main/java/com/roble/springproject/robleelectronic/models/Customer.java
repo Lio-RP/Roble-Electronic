@@ -1,6 +1,8 @@
 package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,18 +13,23 @@ import java.util.Set;
 public class Customer extends User {
 
     @Column(name = "address_line1")
+    @NotBlank
+    @Size(min = 5, max = 255)
     private String addressLine1;
 
-    @Column(name = "address_line2")
-    private String addressLine2;
-
     @Column(name = "city")
+    @NotBlank
+    @Size(min = 5, max = 255)
     private String city;
 
     @Column(name = "country")
+    @NotBlank
+    @Size(min = 5, max = 255)
     private String country;
 
     @Column(name = "zipcode")
+    @NotBlank
+    @Size(min = 5, max = 10)
     private String zipcode;
 
     @OneToMany(mappedBy = "customer")
@@ -34,14 +41,6 @@ public class Customer extends User {
 
     public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
     }
 
     public String getCity() {

@@ -3,6 +3,7 @@ package com.roble.springproject.robleelectronic.controllers;
 import com.roble.springproject.robleelectronic.models.Category;
 import com.roble.springproject.robleelectronic.models.Customer;
 import com.roble.springproject.robleelectronic.models.Payment;
+import com.roble.springproject.robleelectronic.models.Product;
 import com.roble.springproject.robleelectronic.services.CategoryService;
 import com.roble.springproject.robleelectronic.services.ProductService;
 import com.roble.springproject.robleelectronic.services.ShoppingCartService;
@@ -27,6 +28,11 @@ public class OrderController {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
         this.categoryService = categoryService;
+    }
+
+    @ModelAttribute("product")
+    public Product productObject(){
+        return new Product();
     }
 
     @ModelAttribute("categories")

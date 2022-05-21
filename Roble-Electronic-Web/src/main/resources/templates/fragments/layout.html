@@ -45,10 +45,10 @@
             </div>
         </div>
         <div class="col-md-9">
-            <form th:action="@{'/roble_elco/products'}" method="get">
+            <form th:action="@{'/roble_elco/products'}" th:object="${product}" method="get">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <select class="form-select flex-shrink-0" name="description" id="description" style="width: 7.5rem; height: 35px;">
+                        <select class="form-select flex-shrink-0" th:field="*{category.description}" style="width: 7.5rem; height: 35px;">
                             <option value="">All categories</option>
                             <option th:each="categroy : ${categories}"
                                     th:value="${categroy.getDescription()}"
@@ -58,8 +58,7 @@
                     </div>
                     <input
                             type="text"
-                            name="name"
-                            id="name"
+                            th:field="*{name}"
                             placeholder="Search by product name"
                             class="form-control"
                             aria-label="Text input with dropdown button"
@@ -68,6 +67,12 @@
                         <span> <i class="fa-solid fa-magnifying-glass"></i></span>
                     </button>
                 </div>
+                <span class="help-inline">
+                    <div
+                            th:if="${#fields.hasAnyErrors()}">
+                        <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+                    </div>
+                </span>
             </form>
         </div>
     </div>

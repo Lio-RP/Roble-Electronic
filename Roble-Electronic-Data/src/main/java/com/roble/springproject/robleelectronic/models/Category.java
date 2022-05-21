@@ -1,6 +1,7 @@
 package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Category extends BaseEntity {
 
     @Column(name = "description")
     @Lob
+    @NotBlank
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

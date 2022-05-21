@@ -1,6 +1,7 @@
 package com.roble.springproject.robleelectronic.controllers;
 
 import com.roble.springproject.robleelectronic.models.Category;
+import com.roble.springproject.robleelectronic.models.Product;
 import com.roble.springproject.robleelectronic.services.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,11 @@ public class HomeController {
     @ModelAttribute("categories")
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
+    }
+
+    @ModelAttribute("product")
+    public Product productObject(){
+        return new Product();
     }
 
     @RequestMapping({"","/","/index","index.html"})

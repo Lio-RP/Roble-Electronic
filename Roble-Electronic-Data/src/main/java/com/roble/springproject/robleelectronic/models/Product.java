@@ -1,6 +1,8 @@
 package com.roble.springproject.robleelectronic.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,10 +13,13 @@ import java.util.Set;
 public class Product extends BaseEntity {
 
     @Column(name = "name")
+    @NotBlank
+    @Size(min = 10, max = 255)
     private String name;
 
     @Column(name = "description")
     @Lob
+    @NotBlank
     private String description;
 
     @Column(name = "vendor")

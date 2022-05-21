@@ -32,6 +32,11 @@ public class ImageController {
         this.categoryService = categoryService;
     }
 
+    @ModelAttribute("product")
+    public Product productObject(){
+        return new Product();
+    }
+
     @ModelAttribute("categories")
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
