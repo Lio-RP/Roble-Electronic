@@ -47,7 +47,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 ShoppingCart cart = optionalCart.get();
 
                 newCart.setQuantity(cart.getQuantity() + 1);
-                newCart.setSubtotal(cart.getSubtotal() * 2);
+                newCart.setSubtotal(cart.getSubtotal() + product.getPrice());
                 newCart.setProduct(product);
             }else{
                 newCart.setQuantity(1);
