@@ -1,6 +1,6 @@
-package com.roble.springproject.robleelectronic.repositories;
+package com.roble.springproject.RobleElectronic.repositories;
 
-import com.roble.springproject.robleelectronic.models.Product;
+import com.roble.springproject.RobleElectronic.models.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

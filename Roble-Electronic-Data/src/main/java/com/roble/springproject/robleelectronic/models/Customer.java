@@ -1,16 +1,14 @@
-package com.roble.springproject.robleelectronic.models;
+package com.roble.springproject.RobleElectronic.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "customer")
-public class Customer extends User {
+public class Customer extends Person {
 
     @Column(name = "address_line1")
     @NotBlank

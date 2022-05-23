@@ -1,6 +1,6 @@
-package com.roble.springproject.robleelectronic.repositories;
+package com.roble.springproject.RobleElectronic.repositories;
 
-import com.roble.springproject.robleelectronic.models.Employee;
+import com.roble.springproject.RobleElectronic.models.Employee;
 import org.springframework.data.repository.CrudRepository;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {

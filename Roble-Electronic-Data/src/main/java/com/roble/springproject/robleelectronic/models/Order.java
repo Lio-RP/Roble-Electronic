@@ -1,6 +1,6 @@
-package com.roble.springproject.robleelectronic.models;
+package com.roble.springproject.RobleElectronic.models;
 
-import com.roble.springproject.robleelectronic.enums.OrderStatus;
+import com.roble.springproject.RobleElectronic.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

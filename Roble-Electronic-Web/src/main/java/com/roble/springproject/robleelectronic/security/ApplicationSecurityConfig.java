@@ -1,6 +1,7 @@
-package com.roble.springproject.robleelectronic.security;
+package com.roble.springproject.RobleElectronic.security;
 
-/*import com.roble.springproject.robleelectronic.auth.UserDetailsServiceImple;*/
+import com.roble.springproject.RobleElectronic.auth.UserDetailsServiceImple;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,49 +11,43 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.roble.springproject.robleelectronic.security.UserPermissions.CATEGORY_WRITE;
-import static com.roble.springproject.robleelectronic.security.UserRoles.*;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 
-    public final PasswordEncoder passwordEncoder;
-    /*private final UserDetailsServiceImple userDetailsServiceImple;*/
+    @Autowired
+    public PasswordEncoder passwordEncoder;
 
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new UserDetailsServiceImple();
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/roble_elco", "/roble_elco/", "/roble_elco/products/**", "/roble_elco/category/**", "/index", "/css/*", "/js/*", "/images/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
-                .antMatchers(HttpMethod.PUT, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
-                .antMatchers(HttpMethod.DELETE, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
-                .antMatchers(HttpMethod.GET, "/roble_elco/admin/*").hasAuthority(CATEGORY_WRITE.getPermission())
+                .antMatchers(HttpMethod.POST, "/roble_elco/admin/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/roble_elco/admin/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/roble_elco/admin/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/roble_elco/admin/*").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
-                /*.loginPage("/login")
+                .formLogin()
                 .permitAll()
                 .defaultSuccessUrl("/roble_elco")
                 .and()
                 .rememberMe()
-                .tokenValiditySeconds((int)TimeUnit.DAYS.toSeconds(21))
+                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
                 .key("somethingverysecured")
                 .and()
                 .logout()
@@ -60,23 +55,25 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/login")*/
+                .logoutSuccessUrl("/login");
 //                .httpBasic();
     }
 
-/*    @Override
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder);
-        provider.setUserDetailsService(userDetailsServiceImple);
+        provider.setUserDetailsService(userDetailsService());
         return provider;
-    }*/
+    }
 
-    @Override
+/*    @Override
     @Bean
     protected UserDetailsService userDetailsService() {
         UserDetails userLiban = User.builder()
@@ -97,5 +94,5 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 userLiban,
                 userZamin
         );
-    }
+    }*/
 }

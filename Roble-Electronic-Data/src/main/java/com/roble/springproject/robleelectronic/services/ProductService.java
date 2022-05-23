@@ -1,9 +1,7 @@
-package com.roble.springproject.robleelectronic.services;
+package com.roble.springproject.RobleElectronic.services;
 
-import com.roble.springproject.robleelectronic.models.Product;
-
+import com.roble.springproject.RobleElectronic.models.Product;
 import java.util.List;
-import java.util.Set;
 
 public interface ProductService {
 
@@ -20,4 +18,6 @@ public interface ProductService {
     List<Product> findByNameLike(String name, String description);
 
     void deleteById(Long productId);
+
+    void deleteAll();
 }

@@ -1,4 +1,4 @@
-package com.roble.springproject.robleelectronic.services;
+package com.roble.springproject.RobleElectronic.services;
 
 public interface CustomerService {
 }

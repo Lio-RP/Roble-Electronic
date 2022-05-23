@@ -1,15 +1,13 @@
-package com.roble.springproject.robleelectronic.services.imple;
+package com.roble.springproject.RobleElectronic.services.imple;
 
-import com.roble.springproject.robleelectronic.models.Product;
-import com.roble.springproject.robleelectronic.repositories.ProductRepository;
-import com.roble.springproject.robleelectronic.services.ImageService;
-import lombok.extern.slf4j.Slf4j;
+import com.roble.springproject.RobleElectronic.models.Product;
+import com.roble.springproject.RobleElectronic.repositories.ProductRepository;
+import com.roble.springproject.RobleElectronic.services.ImageService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@Slf4j
 @Service
 public class ImageServiceImpl implements ImageService {
 
@@ -36,7 +34,7 @@ public class ImageServiceImpl implements ImageService {
             productRepository.save(product);
 
         }catch (IOException e){
-            log.debug("image received", e);
+            System.out.println("image received" + e);
 
             e.printStackTrace();
         }

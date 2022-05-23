@@ -1,4 +1,4 @@
-package com.roble.springproject.robleelectronic.security;
+package com.roble.springproject.RobleElectronic.security;
 
 public enum UserPermissions {
     PRODUCT_READ("product:read"),

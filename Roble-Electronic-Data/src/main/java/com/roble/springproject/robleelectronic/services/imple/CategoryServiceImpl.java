@@ -1,8 +1,8 @@
-package com.roble.springproject.robleelectronic.services.imple;
+package com.roble.springproject.RobleElectronic.services.imple;
 
-import com.roble.springproject.robleelectronic.models.Category;
-import com.roble.springproject.robleelectronic.repositories.CategoryRepository;
-import com.roble.springproject.robleelectronic.services.CategoryService;
+import com.roble.springproject.RobleElectronic.models.Category;
+import com.roble.springproject.RobleElectronic.repositories.CategoryRepository;
+import com.roble.springproject.RobleElectronic.services.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,5 +44,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteById(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        categoryRepository.deleteAll();
     }
 }

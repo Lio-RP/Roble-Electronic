@@ -16,7 +16,9 @@
             <div class="product" th:each="product : ${listProducts}">
                 <a th:href="@{'/roble_elco/products/' + ${product.getId() + '/view'}}"
                    class="product--link">
-                    <img src="/images/iphone.jpg" class="product--image"/>
+                    <img
+                            th:src="@{'/roble_elco/admin/product/' + ${product.getId()} + '/productImage'}"
+                            src="/images/iphone.jpg" class="product--image"/>
                     <div class="product--info">
                         <h3 th:text="${product.getName()}">Iphone Red 128GB</h3>
                         <p>Electronics</p>

@@ -1,13 +1,11 @@
-package com.roble.springproject.robleelectronic.loaddata;
+package com.roble.springproject.RobleElectronic.loaddata;
 
-import com.roble.springproject.robleelectronic.models.Category;
-import com.roble.springproject.robleelectronic.models.Product;
-import com.roble.springproject.robleelectronic.services.CategoryService;
-import com.roble.springproject.robleelectronic.services.ProductService;
+import com.roble.springproject.RobleElectronic.models.Category;
+import com.roble.springproject.RobleElectronic.models.Product;
+import com.roble.springproject.RobleElectronic.services.CategoryService;
+import com.roble.springproject.RobleElectronic.services.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -89,7 +87,7 @@ public class DataLoader implements CommandLineRunner {
                 "monitoring of blood oxygen level measurmenet (SpO2 indicator).");
 
         System.out.println("Products Loaded Successfully");
-
+/*
         //Give Categories their products:
         smart_watches.getProducts().add(bracelets);
         smart_watches.getProducts().add(bracelets2);
@@ -113,7 +111,11 @@ public class DataLoader implements CommandLineRunner {
         categoryService.save(notebooks);
         categoryService.save(headphones);
         categoryService.save(accessories);
-        categoryService.save(cameras);
+        categoryService.save(cameras);*/
+
+//        categoryService.deleteAll();
+//        productService.deleteAll();
+//        System.out.println("All products and categories are deleted");
 
     }
 }

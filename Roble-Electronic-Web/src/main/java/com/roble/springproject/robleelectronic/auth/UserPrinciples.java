@@ -1,70 +1,65 @@
-/*
-package com.roble.springproject.robleelectronic.auth;
+package com.roble.springproject.RobleElectronic.auth;
 
+import com.roble.springproject.RobleElectronic.models.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 public class UserPrinciples implements UserDetails {
 
-    private final String username;
-    private final String password;
-    private final Set<? extends GrantedAuthority> authorities;
-    private final boolean isAccountNonExpired;
-    private final boolean isAccountNonLocked;
-    private final boolean isCredentialsNonExpired;
-    private final boolean isEnabled;
-
-    public UserPrinciples(String username, String password,
-                          Set<? extends GrantedAuthority> authorities,
-                          boolean isAccountNonExpired,
-                          boolean isAccountNonLocked,
-                          boolean isCredentialsNonExpired,
-                          boolean isEnabled) {
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-        this.isAccountNonExpired = isAccountNonExpired;
-        this.isAccountNonLocked = isAccountNonLocked;
-        this.isCredentialsNonExpired = isCredentialsNonExpired;
-        this.isEnabled = isEnabled;
-    }
+    private User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
+        System.out.println(user);
+        if(user.getUserName().equals("liban")){
+            authorityList.add(new SimpleGrantedAuthority("ROLE_" + "ADMIN"));
+        }else{
+            authorityList.add(new SimpleGrantedAuthority("ROLE_" + "USER"));
+        }
+        return authorityList;
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getUserName();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return isAccountNonExpired;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return isAccountNonLocked;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return isCredentialsNonExpired;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return isEnabled;
+        return true;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
-*/

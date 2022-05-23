@@ -1,4 +1,4 @@
-package com.roble.springproject.robleelectronic.models;
+package com.roble.springproject.RobleElectronic.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

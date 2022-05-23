@@ -1,6 +1,6 @@
-package com.roble.springproject.robleelectronic.repositories;
+package com.roble.springproject.RobleElectronic.repositories;
 
-import com.roble.springproject.robleelectronic.models.Category;
+import com.roble.springproject.RobleElectronic.models.Category;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;

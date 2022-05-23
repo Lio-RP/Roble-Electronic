@@ -1,9 +1,8 @@
-package com.roble.springproject.robleelectronic.services;
+package com.roble.springproject.RobleElectronic.services;
 
-import com.roble.springproject.robleelectronic.models.Category;
+import com.roble.springproject.RobleElectronic.models.Category;
 
 import java.util.List;
-import java.util.Set;
 
 public interface CategoryService {
 
@@ -16,4 +15,6 @@ public interface CategoryService {
     Category findByDescription(String description);
 
     void deleteById(Long id);
+
+    void deleteAll();
 }

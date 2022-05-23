@@ -1,22 +1,19 @@
-package com.roble.springproject.robleelectronic.models;
+package com.roble.springproject.RobleElectronic.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "product_line")
+@Table(name = "shopping_cart")
 public class ShoppingCart extends BaseEntity {
 
     @Column(name = "quantity")
     private int quantity;
 
-    @OneToOne
+    @ManyToOne
     private Product product;
 
-    @Column(name = "subtotal")
-    private float subtotal;
+    @ManyToOne
+    private User user;
 
     public int getQuantity() {
         return quantity;
@@ -32,13 +29,5 @@ public class ShoppingCart extends BaseEntity {
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public float getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
     }
 }

@@ -1,4 +1,4 @@
-package com.roble.springproject.robleelectronic.models;
+package com.roble.springproject.RobleElectronic.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "employee")
-public class Employee extends User {
+public class Employee extends Person {
 
     @Column(name = "jop_title")
     @NotBlank

@@ -1,6 +1,6 @@
-package com.roble.springproject.robleelectronic.services;
+package com.roble.springproject.RobleElectronic.services;
 
-import com.roble.springproject.robleelectronic.models.ShoppingCart;
+import com.roble.springproject.RobleElectronic.models.ShoppingCart;
 
 public interface ShoppingCartService {
 

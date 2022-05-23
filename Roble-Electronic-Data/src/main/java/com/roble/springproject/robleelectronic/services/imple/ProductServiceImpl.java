@@ -1,16 +1,14 @@
-package com.roble.springproject.robleelectronic.services.imple;
+package com.roble.springproject.RobleElectronic.services.imple;
 
-import com.roble.springproject.robleelectronic.models.Category;
-import com.roble.springproject.robleelectronic.models.Product;
-import com.roble.springproject.robleelectronic.repositories.CategoryRepository;
-import com.roble.springproject.robleelectronic.repositories.ProductRepository;
-import com.roble.springproject.robleelectronic.services.ProductService;
-import lombok.extern.slf4j.Slf4j;
+import com.roble.springproject.RobleElectronic.models.Category;
+import com.roble.springproject.RobleElectronic.models.Product;
+import com.roble.springproject.RobleElectronic.repositories.CategoryRepository;
+import com.roble.springproject.RobleElectronic.repositories.ProductRepository;
+import com.roble.springproject.RobleElectronic.services.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-@Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -105,5 +103,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteById(Long productId) {
         productRepository.deleteById(productId);
+    }
+
+    @Override
+    public void deleteAll() {
+        productRepository.deleteAll();
     }
 }

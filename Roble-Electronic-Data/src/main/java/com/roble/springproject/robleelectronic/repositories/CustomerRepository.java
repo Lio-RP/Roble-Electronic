@@ -1,6 +1,6 @@
-package com.roble.springproject.robleelectronic.repositories;
+package com.roble.springproject.RobleElectronic.repositories;
 
-import com.roble.springproject.robleelectronic.models.Customer;
+import com.roble.springproject.RobleElectronic.models.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
