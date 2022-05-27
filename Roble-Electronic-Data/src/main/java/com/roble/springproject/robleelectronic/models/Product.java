@@ -22,11 +22,14 @@ public class Product extends BaseEntity {
     @NotBlank
     private String description;
 
-    @Column(name = "vendor")
-    private String vendor;
+    @Column(name = "brand")
+    private String brand;
 
     @Column(name = "price")
     private float price;
+
+    @Column(name = "in_stock")
+    private int inStock;
 
     @Column(name = "image")
     @Lob
@@ -52,12 +55,20 @@ public class Product extends BaseEntity {
         this.description = description;
     }
 
-    public String getVendor() {
-        return vendor;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public int getInStock() {
+        return inStock;
+    }
+
+    public void setInStock(int inStock) {
+        this.inStock = inStock;
     }
 
     public float getPrice() {
@@ -84,13 +95,15 @@ public class Product extends BaseEntity {
         this.category = category;
     }
 
+
     @Override
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
+                ", brand='" + brand + '\'' +
                 ", price=" + price +
+                ", inStock=" + inStock +
                 ", image=" + Arrays.toString(image) +
                 ", category=" + category +
                 '}';

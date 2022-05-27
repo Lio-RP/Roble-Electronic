@@ -17,7 +17,7 @@ public interface ProductService {
 
     List<Product> findByNameLike(String name, String description);
 
-    void deleteById(Long productId);
+    void deleteById(Long productId, Long categoryId);
 
     void deleteAll();
 }

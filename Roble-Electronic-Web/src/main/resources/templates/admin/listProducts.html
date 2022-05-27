@@ -29,7 +29,7 @@
                                 <tr th:each="product : ${listProducts}">
                                     <td th:text="${product.getId()}">123</td>
                                     <td th:text="${product.getName()}">Smart Phones</td>
-                                    <td th:text="${product.getVendor()}">Xiomi</td>
+                                    <td th:text="${product.getBrand()}">Xiomi</td>
                                     <td th:text="${product.getPrice()} + 'руб'">3985 rub</td>
                                     <td>
                                         <a href="#" th:href="@{'/roble_elco/admin/products/' + ${product.getId()} + '/view'}">

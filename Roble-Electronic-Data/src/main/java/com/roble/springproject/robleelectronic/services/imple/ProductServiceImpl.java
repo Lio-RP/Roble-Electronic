@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
             if(!savedProduct.isPresent()){
                 savedProduct = savedCategory.getProducts().stream()
                         .filter(product -> product.getName().equals(productObject.getName()))
-                        .filter(product -> product.getVendor().equals(productObject.getVendor()))
+                        .filter(product -> product.getBrand().equals(productObject.getBrand()))
                         .filter(product -> product.getDescription().equals(productObject.getDescription()))
                         .findFirst();
             }
@@ -101,8 +101,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteById(Long productId) {
-        productRepository.deleteById(productId);
+    public void deleteById(Long productId, Long categoryId) {
+        Category category = categoryRepository.findById(categoryId).get();
+        Product product = productRepository.findById(productId).get();
+
+        category.getProducts().remove(product);
+        product.setCategory(null);
+        categoryRepository.save(category);
+       // productRepository.delete(product);
     }
 
     @Override

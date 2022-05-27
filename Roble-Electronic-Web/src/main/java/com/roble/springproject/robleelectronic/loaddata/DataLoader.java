@@ -49,7 +49,7 @@ public class DataLoader implements CommandLineRunner {
 
         Product bracelets= new Product();
         bracelets.setName("Fitness bracelets");
-        bracelets.setVendor("Xiaomi");
+        bracelets.setBrand("Xiaomi");
         bracelets.setPrice(3299);
         bracelets.setDescription("30 sports and fitness modes of operations;" +
                 "PPG sensor for tracking changes in heart rate;" +
@@ -57,7 +57,7 @@ public class DataLoader implements CommandLineRunner {
 
         Product bracelets2 = new Product();
         bracelets2.setName("Fitness bracelets");
-        bracelets2.setVendor("Xiaomi");
+        bracelets2.setBrand("Xiaomi");
         bracelets2.setPrice(3299);
         bracelets2.setDescription("30 sports and fitness modes of operations;" +
                 "PPG sensor for tracking changes in heart rate;" +
@@ -65,7 +65,7 @@ public class DataLoader implements CommandLineRunner {
 
         Product iphone1 = new Product();
         iphone1.setName("Iphone Red 128GB");
-        iphone1.setVendor("");
+        iphone1.setBrand("");
         iphone1.setPrice(159);
         iphone1.setDescription("30 sports and fitness modes of operations;" +
                 "PPG sensor for tracking changes in heart rate;" +
@@ -73,7 +73,7 @@ public class DataLoader implements CommandLineRunner {
 
         Product googlePixel = new Product();
         googlePixel.setName("Google Pixel Blue");
-        googlePixel.setVendor("");
+        googlePixel.setBrand("");
         googlePixel.setPrice(256);
         googlePixel.setDescription("30 sports and fitness modes of operations;" +
                 "PPG sensor for tracking changes in heart rate;" +

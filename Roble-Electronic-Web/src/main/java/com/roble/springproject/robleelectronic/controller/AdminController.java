@@ -66,7 +66,7 @@ public class AdminController {
     public String deleteProduct(@PathVariable("categoryId") Long categoryId,
                                 @PathVariable("productId") Long productId){
 
-        productService.deleteById(productId);
+        productService.deleteById(productId, categoryId);
 
         return "redirect:/roble_elco/admin/categories/" + categoryId + "/products";
     }
