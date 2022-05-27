@@ -9,6 +9,9 @@ public class ShoppingCart extends BaseEntity {
     @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "subtotal_price")
+    private float subtotalPrice;
+
     @ManyToOne
     private Product product;
 
@@ -29,5 +32,30 @@ public class ShoppingCart extends BaseEntity {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public float getSubtotalPrice() {
+        return subtotalPrice;
+    }
+
+    public void setSubtotalPrice(float subtotalPrice) {
+        this.subtotalPrice = subtotalPrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "quantity=" + quantity +
+                ", product=" + product +
+                ", user=" + user +
+                '}';
     }
 }

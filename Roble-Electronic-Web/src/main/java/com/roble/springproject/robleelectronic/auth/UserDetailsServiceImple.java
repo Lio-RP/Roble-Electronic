@@ -2,11 +2,14 @@ package com.roble.springproject.RobleElectronic.auth;
 
 import com.roble.springproject.RobleElectronic.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.security.Principal;
 
 @Service
 public class UserDetailsServiceImple implements UserDetailsService {
@@ -33,6 +36,14 @@ public class UserDetailsServiceImple implements UserDetailsService {
         user.setPassword(encodedPassword);
 
         return userRepository.save(user);
+    }
+
+    public User getCurrentlyLoggedUser(UserPrinciples userPrincipal){
+        if(userPrincipal == null) return null;
+
+        User user = userPrincipal.getUser();
+
+       return user;
     }
 }
 

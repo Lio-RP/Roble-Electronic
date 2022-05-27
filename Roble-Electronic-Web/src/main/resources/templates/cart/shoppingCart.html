@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'shoppingCart')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--Cart Details-->
+    <div class="container-fluid my-5">
+
+        <h1
+                th:unless="${#lists.isEmpty(listCarts)}"
+                style="font-size: 18px; font-weight: 800;">Your Cart Details</h1>
+
+        <div class="row m-1" th:unless="${#lists.isEmpty(listCarts)}">
+            <div class="col-sm-8">
+                <th:block th:each="cartItem : ${listCarts}">
+                    <div class="row border rounded">
+                        <div class="col-1">
+                            <div th:text="${cartItem.getQuantity()}"></div>
+                            <div>
+                                <a href="#" th:href="@{'/roble_elco/cart/' + ${cartItem.getId()} + '/deleteItem'}">
+                                    <i class="fa-solid fa-trash icon-dark"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img
+                                    class="img-fluid"
+                                    th:src="@{'/roble_elco/admin/product/' + ${cartItem.getProduct().getId()} + '/productImage'}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <a th:href="@{'/roble_elco/products/' + ${cartItem.getProduct().getId() + '/view'}}">
+                                    <b th:text="${cartItem.getProduct().getName()}"></b>
+                                </a>
+                            </div>
+                            <div>
+                                <nav>
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link minusButton" href="#"
+                                               th:href="@{'/roble_elco/cart/' + ${cartItem.getId()} + '/decrease'}">
+                                                <b>-</b>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <input type="text"
+                                                   th:value="${cartItem.getQuantity()}"
+                                                   class="form-control"
+                                                   onkeydown="return false;"
+                                                   style="max-width: 55px"/>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link plusButton" href="#"
+                                               th:href="@{'/roble_elco/cart/' + ${cartItem.getId()} + '/update'}">
+                                                <b>+</b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+<!--                                <input type="number" th:value="${cartItem.getQuantity()}" class="form-control"/>-->
+                            </div>
+                            <div>
+                                <span>X</span>
+                                <span th:text="'$' + ${cartItem.getProduct().getPrice()}"></span>
+                            </div>
+                            <div>
+                                <span>=</span><span class="h4"
+                                                    th:text="${cartItem.getSubtotalPrice()}">Subtotla</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-1">&nbsp;</div>
+                </th:block>
+            </div>
+            <div class="col-sm-4">
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-header bg-primary">
+                            <h1 class="card-title"
+                                style="font-size: 16px; font-weight: 600; font-family: sans-serif;">Cart Totals</h1>
+                        </div>
+                        <div class="card-body">
+                            <h2 style="font-size: 16px; font-weight: 500; font-family: sans-serif;">Products
+                                (<span th:text="${totalCartsQuantity}">5</span>)
+                            </h2>
+                            <p>Total Cost: <span th:text="${totalCartsPrice} + '$'"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <a href="#"
+                   th:href="@{'/roble_elco/checkout'}"
+                   class="btn btn-primary"
+                   style="font-size: 14px; font-weight: 700;">Proceed To CheckOut</a>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(listCarts)}" style="height: 50vh;">
+            <h3>You haven't chosen any product yet.</h3>
+        </div>
+    </div>
+    <!--END CART DETAILS-->
+</body>
+</html>
