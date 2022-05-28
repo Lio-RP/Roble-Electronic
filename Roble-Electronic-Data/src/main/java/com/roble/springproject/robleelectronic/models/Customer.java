@@ -1,6 +1,7 @@
 package com.roble.springproject.RobleElectronic.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -24,6 +25,15 @@ public class Customer extends Person {
     @NotBlank
     @Size(min = 5, max = 255)
     private String country;
+    
+    @Column(name = "email")
+    @Email
+    private String email;
+    
+    @Column(name = "phone")
+    @NotBlank
+    @Size(min = 11, max = 15)
+    private String phoneNumber;
 
     @Column(name = "zipcode")
     @NotBlank
@@ -65,7 +75,25 @@ public class Customer extends Person {
         this.zipcode = zipcode;
     }
 
-   public List<Order> getOrders() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<Order> getOrders() {
         return orders;
     }
 

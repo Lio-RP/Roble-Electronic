@@ -9,6 +9,7 @@ import com.roble.springproject.RobleElectronic.services.ProductService;
 import com.roble.springproject.RobleElectronic.services.ShoppingCartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,15 +43,17 @@ public class OrderController {
     @GetMapping("checkout")
     public String initCheckoutForm(Model model){
 
-        //model.addAttribute("orderList", shoppingCartService.getAllOrders());
         model.addAttribute("customer", new Customer());
         return "order/checkout";
     }
 
     @PostMapping("checkout")
     public String processCheckoutForm(@ModelAttribute("customer") Customer customer,
+                                      BindingResult result,
                                       Model model){
-
+        if(result.hasErrors()){
+            return "order/checkout";
+        }
         return "redirect:/roble_elco/payment";
 
     }

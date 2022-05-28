@@ -206,16 +206,16 @@ section {
 
 /*CHECKOUT SECTION-->*/
 .container--checkout {
-    margin: 15px 10px;
+    margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .form-row--checkout {
     margin: 0;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
 }
 
 .form-group--checkout {

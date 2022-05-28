@@ -2,6 +2,7 @@ package com.roble.springproject.RobleElectronic.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -23,12 +24,16 @@ public class Product extends BaseEntity {
     private String description;
 
     @Column(name = "brand")
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String brand;
 
     @Column(name = "price")
+    @Positive
     private float price;
 
     @Column(name = "in_stock")
+    @Positive
     private int inStock;
 
     @Column(name = "image")
