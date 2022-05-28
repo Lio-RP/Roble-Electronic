@@ -1,5 +1,7 @@
 package com.roble.springproject.RobleElectronic.auth;
 
+import com.roble.springproject.RobleElectronic.models.Privilege;
+import com.roble.springproject.RobleElectronic.models.Role;
 import com.roble.springproject.RobleElectronic.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,12 +18,17 @@ public class UserPrinciples implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
-        System.out.println(user);
-        if(user.getUserName().equals("liban")){
-            authorityList.add(new SimpleGrantedAuthority("ROLE_" + "ADMIN"));
-        }else{
-            authorityList.add(new SimpleGrantedAuthority("ROLE_" + "USER"));
+
+        List<Role> roles = user.getRoles();
+
+        for(Role role : roles){
+            authorityList.add(new SimpleGrantedAuthority("ROLE_" + role.getRole()));
+
+            for(Privilege privilege : role.getPrivileges()){
+                authorityList.add(new SimpleGrantedAuthority(privilege.getName()));
+            }
         }
+
         return authorityList;
     }
 
