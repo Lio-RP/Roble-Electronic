@@ -33,6 +33,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/roble_elco", "/roble_elco/", "/roble_elco/products/**", "/roble_elco/category/**", "/index", "/css/*", "/js/*", "/images/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/roble_elco/admin/*").hasRole("ADMIN")
