@@ -27,13 +27,9 @@ public class Customer extends Person {
     private String country;
     
     @Column(name = "email")
+    @NotBlank
     @Email
     private String email;
-    
-    @Column(name = "phone")
-    @NotBlank
-    @Size(min = 11, max = 15)
-    private String phoneNumber;
 
     @Column(name = "zipcode")
     @NotBlank
@@ -81,16 +77,6 @@ public class Customer extends Person {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    @Override
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public List<Order> getOrders() {
