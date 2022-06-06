@@ -1,6 +1,9 @@
 package com.roble.springproject.RobleElectronic.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +13,28 @@ import java.util.List;
 public class User extends BaseEntity{
 
     @Column(name = "first_name")
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String firstName;
 
     @Column(name = "last_name")
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String lastName;
 
     @Column(name = "user_name")
+    @NotBlank
+    @Size(min = 3, max = 25)
     private String userName;
 
     @Column(name = "email")
+    @NotBlank
+    @Email
     private String email;
 
     @Column(name = "password")
+    @NotBlank
+    @Size(min = 8)
     private String password;
 
     @Column(name = "reg_date")

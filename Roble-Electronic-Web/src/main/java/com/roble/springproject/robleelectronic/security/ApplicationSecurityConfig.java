@@ -1,6 +1,8 @@
 package com.roble.springproject.RobleElectronic.security;
 
 import com.roble.springproject.RobleElectronic.auth.UserDetailsServiceImple;
+import com.roble.springproject.RobleElectronic.auth.UserRepository;
+import com.roble.springproject.RobleElectronic.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +37,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/roble_elco", "/roble_elco/", "/roble_elco/products/**", "/roble_elco/category/**", "/index", "/css/*", "/js/*", "/images/*").permitAll()
+                .antMatchers("/", "/roble_elco", "/roble_elco/products/**", "/roble_elco/category/**", "/registering", "/index", "/css/*", "/js/*", "/images/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/roble_elco/admin/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/roble_elco/admin/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/roble_elco/admin/*").hasRole("ADMIN")
@@ -44,8 +46,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authenticated()
                 .and()
                 .formLogin()
-                .permitAll()
-                .defaultSuccessUrl("/roble_elco")
+                    .loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/roble_elco",true)
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
@@ -57,7 +60,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "remember-me")
                 .logoutSuccessUrl("/login");
-//                .httpBasic();
     }
 
 

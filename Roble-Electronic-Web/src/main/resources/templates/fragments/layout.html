@@ -28,7 +28,8 @@
     <![endif]-->
 </head>
 <body>
-<div class="container mt-2">
+
+<div class="container mt-1">
     <div class="row">
         <div class="col-3">
             <div class="dropdown">
@@ -44,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-sm-9">
             <form th:action="@{'/roble_elco/products'}" th:object="${product}" method="get">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -87,7 +88,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="color:white;">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" th:href="@{'/roble_elco/'}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" th:href="@{'/roble_elco'}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
@@ -98,15 +99,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{'/roble_elco/admin/categories'}">Admin</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" sec:authorize="isAnonymous()" th:href="@{'/login'}">Login</a>
+                    <a class="nav-link" href="#" th:href="@{'/roble_elco/cart'}" style="color:white;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" sec:authorize="isAnonymous()" th:href="@{'/login'}">
+                        Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" sec:authorize="isAnonymous()" th:href="@{'/registering'}">Sing Up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" sec:authorize="isAuthenticated()" th:href="@{'/logout'}">Logout</a>
                 </li>
             </ul>
         </div>
-    </nav>
+</nav>
 
    <div>
        <th:block th:include="${template}"/>
@@ -117,7 +129,7 @@
             <div class="footer--row">
                 <div class="footer-col">
                     <h4>Company</h4>
-                    <ul>
+                    <ul class="footer-link">
                         <li><a href="#">About us</a></li>
                         <li><a href="#">our services</a></li>
                         <li><a href="#">privacy policy</a></li>
@@ -126,7 +138,7 @@
                 </div>
                 <div class="footer-col">
                     <h4>Get Help</h4>
-                    <ul>
+                    <ul class="footer-link">
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Shipping</a></li>
                         <li><a href="#">returns</a></li>
@@ -136,7 +148,7 @@
                 </div>
                 <div class="footer-col">
                     <h4>online shop</h4>
-                    <ul>
+                    <ul class="footer-link">
                         <li><a href="#">watch</a></li>
                         <li><a href="#">bag</a></li>
                         <li><a href="#">shoes</a></li>

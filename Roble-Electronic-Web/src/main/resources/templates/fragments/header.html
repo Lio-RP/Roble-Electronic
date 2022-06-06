@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div th:fragment="header(product, categories)">
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-3">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            CATEGORIES
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item"
+                               href="#"
+                               th:each="categroy : ${categories}"
+                               th:text="${categroy.getDescription()}"
+                               th:href="@{'/roble_elco/category/' + ${categroy.getId()} + '/products'}">Action</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <form th:action="@{'/roble_elco/products'}" th:object="${product}" method="get">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select class="form-select flex-shrink-0" th:field="*{category.description}" style="width: 7.5rem; height: 35px;">
+                                    <option value="">All categories</option>
+                                    <option th:each="categroy : ${categories}"
+                                            th:value="${categroy.getDescription()}"
+                                            th:text="${categroy.getDescription()}">
+                                    </option>
+                                </select>
+                            </div>
+                            <input
+                                    type="text"
+                                    th:field="*{name}"
+                                    placeholder="Search by product name"
+                                    class="form-control"
+                                    aria-label="Text input with dropdown button"
+                                    style="height: 35px;">
+                            <button class="btn btn-primary" style="height: 35px;">
+                                <span> <i class="fa-solid fa-magnifying-glass"></i></span>
+                            </button>
+                        </div>
+                        <span class="help-inline">
+                    <div
+                            th:if="${#fields.hasAnyErrors()}">
+                        <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+                    </div>
+                </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

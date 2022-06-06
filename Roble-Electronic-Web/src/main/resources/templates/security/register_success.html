@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::body}, 'login')}">
+<head>
+</head>
+<body>
+
+    <section>
+        <div class="container text-center">
+            <div class="alert alert-success text-center">
+                <h3>You have signed up successfully</h3>
+                <p>Click <a href="#" th:href="@{/login}">Here</a> to sign in</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
