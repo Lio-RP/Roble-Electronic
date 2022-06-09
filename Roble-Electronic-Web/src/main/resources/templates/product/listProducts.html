@@ -14,6 +14,7 @@
         <hr>
         <div class="product--list">
             <div class="product" th:each="product : ${listProducts}">
+                <!--/*@thymesVar id="product" type="com.roble.springproject.RobleElectronic.models.Product"*/-->
                 <a th:href="@{'/roble_elco/products/' + ${product.getId() + '/view'}}"
                    class="product--link">
                     <img

@@ -65,31 +65,35 @@ public class SecurityController {
                                      Model model){
         if(result.hasErrors()){
             return SECURITY_REGISTRATION_FORM;
-        }else{
-
-            String username = userDetailsServiceImple.loadUserByUsername(user.getUserName()).getUsername();
-            boolean exists = false;
-
-            if(user.getUserName().equals(username)){
-
-                model.addAttribute("exists", true);
-                model.addAttribute("errorMessage", "The userName already exists. Please choose another userName");
-                return SECURITY_REGISTRATION_FORM;
-
-            }else if(userService.emailExists(user.getEmail())){
-                System.out.println(userService.emailExists(user.getEmail()));
-                model.addAttribute("exists", true);
-                model.addAttribute("errorMessage", "The email already exists. Please choose another email");
-                return SECURITY_REGISTRATION_FORM;
-            }else{
-
-                System.out.println("saving user");
-                User savedUser = userService.register(user);
-                System.out.println(savedUser);
-                System.out.println("user saved");
-                return "security/register_success";
-
-            }
         }
+
+        System.out.println("saving user");
+        User savedUser = userService.register(user);
+        System.out.println(savedUser);
+        System.out.println("user saved");
+        return "security/register_success";
+
+        /*String username = userDetailsServiceImple.loadUserByUsername(user.getUserName()).getUsername();
+        boolean exists = false;
+
+        if(!user.getUserName().equals(username) && !userService.emailExists(user.getEmail())){
+
+            System.out.println("saving user");
+            User savedUser = userService.register(user);
+            System.out.println(savedUser);
+            System.out.println("user saved");
+            return "security/register_success";
+
+
+        }else if(userService.emailExists(user.getEmail())){
+            System.out.println(userService.emailExists(user.getEmail()));
+            model.addAttribute("exists", true);
+            model.addAttribute("errorMessage", "The email already exists. Please choose another email");
+            return SECURITY_REGISTRATION_FORM;
+        }
+
+        model.addAttribute("exists", true);
+        model.addAttribute("errorMessage", "The userName already exists. Please choose another userName");
+        return SECURITY_REGISTRATION_FORM;*/
     }
 }

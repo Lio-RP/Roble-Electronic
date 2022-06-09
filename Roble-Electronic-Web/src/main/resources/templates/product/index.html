@@ -15,94 +15,98 @@
         <p class="product--list--title">New Arrivels</p>
         <hr>
         <div class="product--list">
-            <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/iphone.jpg" class="product--image"/>
+            <div class="product" th:each="product : ${listProducts}">
+                <!--/*@thymesVar id="product" type="com.roble.springproject.RobleElectronic.models.Product"*/-->
+                <a href="#" class="product--link" th:href="@{'/roble_elco/products/' + ${product.getId() + '/view'}}">
+                    <img
+                            th:src="@{'/roble_elco/admin/product/' + ${product.getId()} + '/productImage'}"
+                            src="/images/iphone.jpg" class="product--image"/>
                     <div class="product--info">
-                        <h3>Iphone Red 128GB</h3>
+                        <h3 th:text="${product.getName()}">Iphone Red 128GB</h3>
                         <p>Electronics</p>
-                        <p>$159.00</p>
+                        <p th:text="'$'+${product.getPrice()}">$159.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a th:href="@{'/roble_elco/products/' + ${product.getId()} + '/addToCart'}" class="product--btn">ADD TO CART</a>
             </div>
+            <!--
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/google-pixel.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/google-pixel.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Google Pixel Blue</h3>
                         <p>Electronics</p>
                         <p>$159.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
             </div>
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/xbox2.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/xbox2.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Microsoft Xbox One S</h3>
                         <p>Electronics</p>
                         <p>$69.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
             </div>
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/sgs82.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/sgs82.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Samsung Galaxy S8</h3>
                         <p>Electronics</p>
                         <p>$259.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
             </div>
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/ua_ru-gear.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/ua_ru-gear.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Samsung Gear 360</h3>
                         <p>Electronics</p>
                         <p>$546.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
             </div>
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/apple-watch.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/apple-watch.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Apple Watch Stainless Steel</h3>
                         <p>Electronics</p>
                         <p>$159.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
             </div>
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/webcam.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/webcam.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Pro Stream Webcam</h3>
                         <p>Electronics</p>
                         <p>$59.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
             </div>
             <div class="product">
-                <a href="#" class="product--link">
-                    <img src="/images/beats.jpg" class="product--image"/>
-                    <div class="product--info">
+                <a href="#" class="product&#45;&#45;link">
+                    <img src="/images/beats.jpg" class="product&#45;&#45;image"/>
+                    <div class="product&#45;&#45;info">
                         <h3>Artemis Spectrum G68</h3>
                         <p>Electronics</p>
                         <p>$69.00</p>
                     </div>
                 </a>
-                <a href="/roble_elco/products/productId" class="product--btn">ADD TO CART</a>
-            </div>
+                <a href="/roble_elco/products/productId" class="product&#45;&#45;btn">ADD TO CART</a>
+            </div>-->
         </div>
     </section>
 

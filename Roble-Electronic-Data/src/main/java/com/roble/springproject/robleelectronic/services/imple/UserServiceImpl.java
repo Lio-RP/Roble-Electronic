@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User register(User user) {
 
+        User username = userRepository.findByUserName(user.getUserName());
+
+        if(emailExists(user.getEmail()) || username != null){
+            throw new RuntimeException("the email or usename already exist");
+        }
+
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         Role user_role = roleService.findByRole("USER");
         user.getRoles().add(user_role);
