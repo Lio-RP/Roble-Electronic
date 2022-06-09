@@ -1,8 +1,6 @@
 package com.roble.springproject.RobleElectronic.security;
 
 import com.roble.springproject.RobleElectronic.auth.UserDetailsServiceImple;
-import com.roble.springproject.RobleElectronic.auth.UserRepository;
-import com.roble.springproject.RobleElectronic.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -75,27 +73,4 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
         provider.setUserDetailsService(userDetailsService());
         return provider;
     }
-
-/*    @Override
-    @Bean
-    protected UserDetailsService userDetailsService() {
-        UserDetails userLiban = User.builder()
-                .username("liban")
-                .password(passwordEncoder.encode("password123"))
-//                .roles(ADMIN.name())
-                .authorities(ADMIN.getGrantedAuthority())
-                .build();
-
-        UserDetails userZamin = User.builder()
-                .username("zamin")
-                .password(passwordEncoder.encode("password123"))
-//                .roles(USER.name())
-                .authorities(USER.getGrantedAuthority())
-                .build();
-
-        return new InMemoryUserDetailsManager(
-                userLiban,
-                userZamin
-        );
-    }*/
 }

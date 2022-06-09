@@ -1,12 +1,8 @@
 package com.roble.springproject.RobleElectronic.controller;
 
-import com.roble.springproject.RobleElectronic.auth.UserDetailsServiceImple;
 import com.roble.springproject.RobleElectronic.auth.UserPrinciples;
 import com.roble.springproject.RobleElectronic.models.*;
-import com.roble.springproject.RobleElectronic.services.CategoryService;
-import com.roble.springproject.RobleElectronic.services.CustomerService;
-import com.roble.springproject.RobleElectronic.services.ProductService;
-import com.roble.springproject.RobleElectronic.services.ShoppingCartService;
+import com.roble.springproject.RobleElectronic.services.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,18 +19,18 @@ public class OrderController {
     public final ProductService productService;
     public final ShoppingCartService shoppingCartService;
     public final CategoryService categoryService;
-    public final UserDetailsServiceImple userDetailsServiceImple;
+    public final UserService userService;
     private final CustomerService customerService;
 
     public OrderController(ProductService productService,
                            ShoppingCartService shoppingCartService,
                            CategoryService categoryService,
-                           UserDetailsServiceImple userDetailsServiceImple,
+                           UserService userService,
                            CustomerService customerService) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
         this.categoryService = categoryService;
-        this.userDetailsServiceImple = userDetailsServiceImple;
+        this.userService = userService;
         this.customerService = customerService;
     }
 
@@ -49,7 +45,7 @@ public class OrderController {
     }
 
     public List<ShoppingCart> getListCarts(UserPrinciples userPrincipal){
-        User user = userDetailsServiceImple.getCurrentlyLoggedUser(userPrincipal);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
 
         return shoppingCartService.listCartsByUser(user);
     }

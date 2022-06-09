@@ -1,6 +1,5 @@
 package com.roble.springproject.RobleElectronic.controller;
 
-import com.roble.springproject.RobleElectronic.auth.UserDetailsServiceImple;
 import com.roble.springproject.RobleElectronic.auth.UserPrinciples;
 import com.roble.springproject.RobleElectronic.models.Category;
 import com.roble.springproject.RobleElectronic.models.Product;
@@ -9,6 +8,7 @@ import com.roble.springproject.RobleElectronic.models.User;
 import com.roble.springproject.RobleElectronic.services.CategoryService;
 import com.roble.springproject.RobleElectronic.services.ProductService;
 import com.roble.springproject.RobleElectronic.services.ShoppingCartService;
+import com.roble.springproject.RobleElectronic.services.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,16 +25,16 @@ public class ShoppingCartController {
 
     public final ProductService productService;
     public final ShoppingCartService shoppingCartService;
-    public final UserDetailsServiceImple userDetailsServiceImple;
+    public final UserService userService;
     public final CategoryService categoryService;
 
     public ShoppingCartController(ProductService productService,
                                   ShoppingCartService shoppingCartService,
-                                  UserDetailsServiceImple userDetailsServiceImple,
+                                  UserService userService,
                                   CategoryService categoryService) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
-        this.userDetailsServiceImple = userDetailsServiceImple;
+        this.userService = userService;
         this.categoryService = categoryService;
     }
 
@@ -53,7 +53,7 @@ public class ShoppingCartController {
     public String addToCart(@PathVariable("productId") Long productId,
                             Model model,
                             @AuthenticationPrincipal UserPrinciples userPrincipal){
-        User user = userDetailsServiceImple.getCurrentlyLoggedUser(userPrincipal);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
         shoppingCartService.addToCart(productId, user);
 
         return "redirect:/roble_elco/cart";
@@ -63,7 +63,7 @@ public class ShoppingCartController {
     public String displayCart(Model model,
                               @AuthenticationPrincipal UserPrinciples userPrincipal){
 
-        User user = userDetailsServiceImple.getCurrentlyLoggedUser(userPrincipal);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
         List<ShoppingCart> listCarts = shoppingCartService.listCartsByUser(user);
         float totalCartsPrice = shoppingCartService.calTotalCartsPrice(listCarts);
         int totalCartsQuantity = shoppingCartService.calTotalCartsQuantity(listCarts);
@@ -77,7 +77,7 @@ public class ShoppingCartController {
     @GetMapping("cart/{cartId}/deleteItem")
     public String deleteCartItem(@PathVariable("cartId") Long cartId,
                                  @AuthenticationPrincipal UserPrinciples userPrincipal){
-        User user = userDetailsServiceImple.getCurrentlyLoggedUser(userPrincipal);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
         shoppingCartService.deleteCartItem(cartId, user);
         System.out.println();
         return "redirect:/roble_elco/cart";
@@ -86,7 +86,7 @@ public class ShoppingCartController {
     @GetMapping("cart/{cartId}/update")
     public String updateCartItem(@PathVariable("cartId") Long cartId,
                                  @AuthenticationPrincipal UserPrinciples userPrincipal){
-        User user = userDetailsServiceImple.getCurrentlyLoggedUser(userPrincipal);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
         shoppingCartService.updateCartItem(cartId, user);
         return "redirect:/roble_elco/cart";
     }
@@ -94,7 +94,7 @@ public class ShoppingCartController {
     @GetMapping("cart/{cartId}/decrease")
     public String decreaseCartItem(@PathVariable("cartId") Long cartId,
                                    @AuthenticationPrincipal UserPrinciples userPrincipal){
-        User user = userDetailsServiceImple.getCurrentlyLoggedUser(userPrincipal);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
         shoppingCartService.decreaseCartItem(cartId, user);
         return "redirect:/roble_elco/cart";
     }
