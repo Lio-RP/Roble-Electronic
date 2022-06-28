@@ -46,6 +46,9 @@ public class User extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
+    @OneToOne
+    private Customer customer;
+
     public String getUserName() {
         return userName;
     }
@@ -100,6 +103,14 @@ public class User extends BaseEntity{
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override

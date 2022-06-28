@@ -15,7 +15,7 @@ import java.util.Set;
 public class Order extends BaseEntity {
 
     @Column(name = "order_number")
-    private int orderNumber;
+    private String orderNumber;
     
     @Column(name = "date_ordered")
     private LocalDate dateOrdered;
@@ -27,12 +27,9 @@ public class Order extends BaseEntity {
     
     @Column(name = "product_quantity")
     private int productQuantity;
-    
-    @Column(name = "price")
-    private BigDecimal price;
 
     @Column(name = "total_price")
-    private BigDecimal totalPrice;
+    private float totalPrice;
     
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
@@ -42,11 +39,11 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public int getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -74,20 +71,12 @@ public class Order extends BaseEntity {
         this.productQuantity = productQuantity;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Customer getCustomer() {
@@ -96,5 +85,13 @@ public class Order extends BaseEntity {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 }

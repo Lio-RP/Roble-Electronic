@@ -21,17 +21,20 @@ public class OrderController {
     public final CategoryService categoryService;
     public final UserService userService;
     private final CustomerService customerService;
+    private final OrderService orderService;
 
     public OrderController(ProductService productService,
                            ShoppingCartService shoppingCartService,
                            CategoryService categoryService,
                            UserService userService,
-                           CustomerService customerService) {
+                           CustomerService customerService,
+                           OrderService orderService) {
         this.productService = productService;
         this.shoppingCartService = shoppingCartService;
         this.categoryService = categoryService;
         this.userService = userService;
         this.customerService = customerService;
+        this.orderService = orderService;
     }
 
     @ModelAttribute("product")
@@ -81,7 +84,9 @@ public class OrderController {
             return "order/checkout";
         }
 
-        customerService.save(customer);
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
+        customerService.save(customer, user);
+
         return "redirect:/roble_elco/payment";
 
     }
@@ -99,12 +104,27 @@ public class OrderController {
 
     @PostMapping("payment")
     public String processPaymentForm(@Valid  @ModelAttribute("payment") Payment payment,
-                                      BindingResult result){
+                                      BindingResult result,
+                                     @AuthenticationPrincipal UserPrinciples userPrincipal){
         if(result.hasErrors()){
             return "order/payment";
         }
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
+        orderService.save(user);
+        return "redirect:/roble_elco/receipt";
 
-        return "redirect:/roble_elco";
+    }
 
+    @GetMapping("/receipt")
+    public String receipt(Model model,
+                          @AuthenticationPrincipal UserPrinciples userPrincipal){
+
+        model.addAttribute("totalCartsPrice", getTotalCartsPrice(getListCarts(userPrincipal)));
+        model.addAttribute("totalCartsQuantity", getTotalCartsQuantity(getListCarts(userPrincipal)));
+        model.addAttribute("listCarts", getListCarts(userPrincipal));
+
+        User user = userService.getCurrentlyLoggedUser(userPrincipal);
+        shoppingCartService.clearCart(user);
+        return "order/receipt";
     }
 }

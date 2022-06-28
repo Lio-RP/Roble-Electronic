@@ -19,12 +19,12 @@ public class Payment extends BaseEntity{
     private int securityCode;
 
     @Column(name = "expire_date")
-    private LocalDate expireDate;
+    private String expireDate;
 
     public Payment() {
     }
 
-    public Payment(String cardName, String cardNumber, int securityCode, LocalDate expireDate) {
+    public Payment(String cardName, String cardNumber, int securityCode, String expireDate) {
         this.cardName = cardName;
         this.cardNumber = cardNumber;
         this.securityCode = securityCode;
@@ -55,11 +55,11 @@ public class Payment extends BaseEntity{
         this.securityCode = securityCode;
     }
 
-    public LocalDate getExpireDate() {
+    public String getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(LocalDate expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 }

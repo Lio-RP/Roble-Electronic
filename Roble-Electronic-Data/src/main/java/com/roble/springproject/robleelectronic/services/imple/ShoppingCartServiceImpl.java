@@ -97,10 +97,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         if(cartOptional.isPresent()){
             ShoppingCart cart = cartOptional.get();
             cartRepository.delete(cart);
-            System.out.println("successfully deleted cart item");
         }else {
             throw new RuntimeException("The cart with id " + cartId + " Not Found!");
         }
+    }
+
+    @Override
+    public void clearCart(User user) {
+        List<ShoppingCart> listCarts = listCartsByUser(user);
+        cartRepository.deleteAll(listCarts);
     }
 
     @Override

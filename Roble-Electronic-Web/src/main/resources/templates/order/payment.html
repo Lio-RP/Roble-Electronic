@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout(~{::body}, 'cart')}">
+      th:replace="~{fragments/layout :: layout(~{::body}, 'payment')}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,7 +11,7 @@
         <!--/*@thymesVar id="payment" type="com.roble.springproject.RobleElectronic.models.Payment"*/-->
        <div class="row m-3" th:unless="${#lists.isEmpty(listCarts)}">
            <div class="col-sm-8">
-               <form th:object="${payment}">
+               <form th:object="${payment}" method="post">
 
                    <div th:if="${#fields.hasErrors('*')}"  class="alert alert-danger">
                        <p>Please Correct The Errors Below!.</p>
@@ -75,7 +75,7 @@
                            <input type="text"
                                   th:field="*{expireDate}"
                                   class="form-control"
-                                  placeholder="Ex. Date"
+                                  placeholder="MM/YY"
                                   th:errorclass="invalid">
                            <span class="form-text" th:if="${#fields.hasErrors('expireDate')}">
                                 <ul>
