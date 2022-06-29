@@ -7,7 +7,10 @@ import com.roble.springproject.RobleElectronic.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,19 +76,14 @@ public class ProductController {
         String description = "";
 
         if(product.getCategory().getDescription() == ""){
-            System.out.println("the description is empty");
             name = product.getName() == null ?  "": product.getName();
             listProducts = productService.findByNameLike(name.toLowerCase());
         }else {
-            System.out.println("the description is not empty");
             name = product.getName();
             description = product.getCategory().getDescription();
             listProducts = productService.findByNameLike(name.toLowerCase(), description);
             model.addAttribute("category", categoryService.findByDescription(description));
         }
-
-        System.out.println(listProducts);
-        System.out.println(categoryService.findByDescription(description));
 
         if(listProducts.isEmpty()){
 
