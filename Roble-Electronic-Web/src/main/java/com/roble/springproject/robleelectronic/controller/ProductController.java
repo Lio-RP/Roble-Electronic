@@ -75,7 +75,7 @@ public class ProductController {
         String name = "";
         String description = "";
 
-        if(product.getCategory().getDescription() == ""){
+        if(product.getCategory().getDescription() == "" || product.getCategory().getDescription() == null){
             name = product.getName() == null ?  "": product.getName();
             listProducts = productService.findByNameLike(name.toLowerCase());
         }else {
