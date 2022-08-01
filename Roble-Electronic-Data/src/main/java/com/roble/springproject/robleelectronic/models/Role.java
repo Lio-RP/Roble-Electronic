@@ -50,4 +50,11 @@ public class Role extends BaseEntity{
     public void setPrivileges(List<Privilege> privileges) {
         this.privileges = privileges;
     }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "role='" + role + '\'' +
+                '}';
+    }
 }
