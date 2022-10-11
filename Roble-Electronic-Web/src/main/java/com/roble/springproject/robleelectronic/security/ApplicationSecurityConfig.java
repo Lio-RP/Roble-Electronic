@@ -33,8 +33,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().ignoringAntMatchers("/h2-console/**").disable()
+                .headers().frameOptions().disable()
+                .and()
                 .authorizeRequests()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/roble_elco/cart", "/roble_elco/checkout").authenticated()
                 //.antMatchers("/", "/roble_elco", "/roble_elco/products/**", "/roble_elco/category/**", "/registering", "/index", "/css/*", "/js/*", "/images/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/roble_elco/admin/*").hasRole("ADMIN")
